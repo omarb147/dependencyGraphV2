@@ -1,0 +1,41 @@
+import { INodesState } from "../../Types/types";
+import { resizeNode, nodeActionTypes } from "./actions";
+import { getType } from "typesafe-actions";
+
+const initialState: INodesState = {
+  node123: {
+    id: "node123",
+    size: { height: 100, width: 200 },
+    color: "red",
+    text: "first node in"
+  }
+};
+
+const convertToNumber = (value: string): number => {
+  const splitStr = value.split(/[a-z]/);
+  return parseInt(splitStr[0]) || 100;
+};
+
+export const nodesReducer = (
+  state: INodesState = initialState,
+  action: nodeActionTypes
+): INodesState => {
+  switch (action.type) {
+    case getType(resizeNode): {
+      const id = action.payload.id;
+      return {
+        ...state,
+        [id]: {
+          ...state[id],
+          size: {
+            height: convertToNumber(action.payload.height),
+            width: convertToNumber(action.payload.width)
+          }
+        }
+      };
+    }
+    default: {
+      return state;
+    }
+  }
+};
