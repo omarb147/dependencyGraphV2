@@ -1,19 +1,19 @@
-import React from "react";
-import { compose } from "recompose";
-import { Rnd, RndResizeCallback } from "react-rnd";
-import { withNodes, WithNodesProps } from "../../Hocs/withNodes";
-import { INode } from "../../Types/types";
-import Card from "../Card/Card";
+import React from 'react';
+import { compose } from 'recompose';
+import { Rnd, RndResizeCallback } from 'react-rnd';
+import { withNodes, WithNodesProps } from '../../Hocs/withNodes';
+import { INode } from '../../Types/types';
+import Card from '../Card/Card';
 
 type Props = WithNodesProps & INode;
 
-const Node: React.SFC<Props> = props => {
+const Node: React.SFC<Props> = (props) => {
   const onResizeStop: RndResizeCallback = (
     e,
     direction,
     ref,
     delta,
-    position
+    position,
   ) => {
     props.resizeNode(props.id, ref.style.height, ref.style.width);
   };
@@ -27,7 +27,7 @@ const Node: React.SFC<Props> = props => {
         x: 0,
         y: 0,
         width: 320,
-        height: 200
+        height: 200,
       }}
       onResizeStop={(e, direction, ref, delta, position) => {
         onResizeStop(e, direction, ref, delta, position);

@@ -1,6 +1,6 @@
-import { createAction, ActionType } from "typesafe-actions";
+import { createAction, ActionType } from 'typesafe-actions';
 
-export const resizeNode = createAction("nodes/RESIZE_NODE")<{
+export const resizeNode = createAction('nodes/RESIZE_NODE')<{
   id: string;
   height: string;
   width: string;

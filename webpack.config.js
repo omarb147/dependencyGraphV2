@@ -1,10 +1,11 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ForkTSCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
+// const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ForkTSCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+
 module.exports = {
-  entry: ["./src/index.tsx"],
+  entry: ['./src/index.tsx'],
   resolve: {
-    extensions: [".ts", ".tsx", ".js"]
+    extensions: ['.ts', '.tsx', '.js'],
   },
   module: {
     rules: [
@@ -12,31 +13,35 @@ module.exports = {
         test: /\.(t|j)sx?$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
-        }
+          loader: 'babel-loader',
+        },
       },
       {
         test: /\.html$/,
-        use: [{ loader: "html-loader" }]
+        use: [{ loader: 'html-loader' }],
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"]
-      }
-    ]
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
-      filename: "./index.html"
+      template: './src/index.html',
+      filename: './index.html',
     }),
-    new ForkTSCheckerWebpackPlugin({ tsconfig: "./tsconfig.json", async: false, checkSyntacticErrors: true })
+    new ForkTSCheckerWebpackPlugin({
+      tsconfig: './tsconfig.json',
+      async: false,
+      checkSyntacticErrors: true,
+    }),
   ],
-  devtool: "eval-source-map",
+  devtool: 'eval-source-map',
   devServer: {
     port: 3000,
     hot: true,
     disableHostCheck: true,
-    overlay: true
-  }
+    overlay: true,
+  },
 };

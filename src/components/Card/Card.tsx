@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 interface ICardProps {
   color: string;
@@ -12,19 +12,17 @@ interface ICardProps {
   className?: string;
 }
 
-const Card: React.SFC<ICardProps> = props => {
-  return (
-    <div className={props.className}>
-      <div>{props.text}</div>
-    </div>
-  );
-};
+const Card: React.SFC<ICardProps> = (props) => (
+  <div className={props.className}>
+    <div>{props.text}</div>
+  </div>
+);
 
 export default styled(Card)`
-  background-color: ${props => props.color};
+  background-color: ${(props) => props.color};
   width: 100%;
   height: 100%;
   div {
-    font-size: ${props => props.size.width / 10 + 8}px;
+    font-size: ${(props) => props.size.width / 10 + 8}px;
   }
 `;
