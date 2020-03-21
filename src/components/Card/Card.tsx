@@ -23,6 +23,6 @@ export default styled(Card)`
   width: 100%;
   height: 100%;
   div {
-    font-size: ${(props): number => props.size.width / 10 + 8}px;
+    font-size: 1.5em;
   }
 `;
