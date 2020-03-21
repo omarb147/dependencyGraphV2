@@ -5,10 +5,7 @@
   },
   "settings": {
     "import/resolver": {
-      "node": {
-        "extensions": [".ts", ".tsx"]
-      }
-    }
+      "babel-module": {}
   },
   "extends": [
     "plugin:react/recommended",

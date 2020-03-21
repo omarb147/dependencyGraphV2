@@ -14,11 +14,11 @@
     "noEmit": true,
     "baseUrl": ".",
     "paths": {
-      "@src/*": ["src"],
-      "@hoc/*": ["src/hoc/*"],
-      "@type/*": ["src/type/*"],
-      "@components/*": ["src/components/*"],
-      "@redux/*": ["src/redux/*"]
+      "@/src/*": ["src"],
+      "@/hoc/*": ["src/hoc/*"],
+      "@/type/*": ["src/type/*"],
+      "@/components/*": ["src/components/*"],
+      "@/redux/*": ["src/redux/*"]
     },
     "moduleResolution": "node"
   },
