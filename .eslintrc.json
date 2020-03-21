@@ -38,6 +38,7 @@
         "tsx": "never"
       }
     ],
-    "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }]
+    "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
+    "@typescript-eslint/interface-name-prefix": [1, "always"]
   }
 }
