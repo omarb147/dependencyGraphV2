@@ -6,6 +6,7 @@
   "settings": {
     "import/resolver": {
       "babel-module": {}
+    }
   },
   "extends": [
     "plugin:react/recommended",
