@@ -13,10 +13,10 @@ const initialState: INodesState = {
 
 const convertToNumber = (value: string): number => {
   const splitStr = value.split(/[a-z]/);
-  return parseInt(splitStr[0]) || 100;
+  return parseInt(splitStr[0], 10) || 100;
 };
 
-export const nodesReducer = (
+export default (
   state: INodesState = initialState,
   action: nodeActionTypes,
 ): INodesState => {

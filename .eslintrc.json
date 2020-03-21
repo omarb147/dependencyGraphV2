@@ -10,7 +10,12 @@
       }
     }
   },
-  "extends": ["plugin:react/recommended", "airbnb"],
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "airbnb"
+  ],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
@@ -32,6 +37,8 @@
         "ts": "never",
         "tsx": "never"
       }
-    ]
+    ],
+    "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
+    "@typescript-eslint/interface-name-prefix": [1, "always"]
   }
 }
