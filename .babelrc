@@ -1,4 +1,24 @@
 {
-  "presets": ["@babel/preset-env", "@babel/preset-typescript", "@babel/preset-react"],
-  "plugins": ["@babel/proposal-class-properties", "@babel/proposal-object-rest-spread"]
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-typescript",
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    "@babel/proposal-class-properties",
+    "@babel/proposal-object-rest-spread",
+    [
+      "module-resolver",
+      {
+        "root": ["."],
+        "alias": {
+          "@src": "./src",
+          "@hoc": "./src/hoc",
+          "@type": "./src/type",
+          "@components": "./src/components",
+          "@redux": "./src/redux"
+        }
+      }
+    ]
+  ]
 }

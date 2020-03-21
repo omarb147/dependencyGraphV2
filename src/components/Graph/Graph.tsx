@@ -1,9 +1,9 @@
 import React from 'react';
 import { compose } from 'recompose';
 
-import { IGraphState, INodesState } from 'src/Types/types';
-import { withNodes, WithNodesProps } from '../../Hocs/withNodes';
-import Node from '../Node/node';
+import { IGraphState, INodesState } from '@type/types';
+import { withNodes, WithNodesProps } from '@hoc/withNodes';
+import Node from '@components/Node/node';
 
 type Props = IGraphState & WithNodesProps;
 
