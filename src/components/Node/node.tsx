@@ -1,9 +1,9 @@
 import React from 'react';
 import { compose } from 'recompose';
 import { Rnd, RndResizeCallback } from 'react-rnd';
-import { withNodes, WithNodesProps } from '../../Hocs/withNodes';
-import { INode } from '../../Types/types';
-import Card from '../Card/Card';
+import { withNodes, WithNodesProps } from '@/hoc/withNodes';
+import { INode } from '@/type/types';
+import Card from '@/components/Card/Card';
 
 type Props = WithNodesProps & INode;
 

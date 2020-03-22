@@ -1,5 +1,5 @@
 import { getType } from 'typesafe-actions';
-import { INodesState } from '../../Types/types';
+import { INodesState } from '@/type/types';
 import { resizeNode, nodeActionTypes } from './actions';
 
 const initialState: INodesState = {

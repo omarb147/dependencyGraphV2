@@ -5,7 +5,14 @@
   },
   "settings": {
     "import/resolver": {
-      "node": {
+      "alias": {
+        "map": [
+          ["@/type", "./src/type"],
+          ["@/hoc", "./src/hoc"],
+          ["@/components", "./src/components"],
+          ["@/redux", "./src/Redux"],
+          ["@/src", "./src"]
+        ],
         "extensions": [".ts", ".tsx"]
       }
     }
