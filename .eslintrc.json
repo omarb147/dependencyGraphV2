@@ -5,10 +5,13 @@
   },
   "settings": {
     "import/resolver": {
-      "node": {
-        "extensions": [".ts", ".tsx"]
-      }
+      "typescript": {}
     }
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "tsconfigRootDir": "./"
   },
   "extends": [
     "plugin:react/recommended",
@@ -20,15 +23,7 @@
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
   },
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "ecmaVersion": 2018,
-    "sourceType": "module"
-  },
-  "plugins": ["react", "@typescript-eslint"],
+  "plugins": ["react", "@typescript-eslint", "import"],
   "rules": {
     "import/extensions": [
       "error",

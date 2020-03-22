@@ -12,8 +12,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "baseUrl": ".",
-    "moduleResolution": "node"
+    "baseUrl": "./",
+    "moduleResolution": "node",
+    "paths": {
+      "@src/*": ["src/*"]
+    }
   },
   "include": ["./src/", "Node"],
   "exclude": ["node_modules"]
