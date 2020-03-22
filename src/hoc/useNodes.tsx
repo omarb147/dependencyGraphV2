@@ -1,5 +1,5 @@
 import { useSelector as reduxUseSelector, useDispatch, TypedUseSelectorHook } from 'react-redux';
-import { resizeNode, ResizeNode } from '@/redux/Nodes/actions';
+import { resizeNode, ResizeNode } from '@/module/node/actions';
 import { IGraphState, INodesState } from '@/type/types';
 
 const useSelector: TypedUseSelectorHook<IGraphState> = reduxUseSelector;
