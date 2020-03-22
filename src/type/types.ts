@@ -9,7 +9,7 @@ export interface INode {
 }
 
 export interface INodesState {
-    [key: string]: INode;
+  [key: string]: INode;
 }
 
 export interface ILink {
