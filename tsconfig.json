@@ -19,7 +19,7 @@
       "@/type/*": ["src/type/*"],
       "@/components": ["src/components"],
       "@/components/*": ["src/components/*"],
-      "@/redux/*": ["src/redux/*"]
+      "@/redux/*": ["src/Redux/*"]
     },
     "moduleResolution": "node"
   },

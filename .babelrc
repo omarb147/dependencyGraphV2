@@ -15,7 +15,7 @@
           "@/hoc": "./src/hoc",
           "@/type": "./src/type",
           "@/components": "./src/components",
-          "@/redux": "./src/redux"
+          "@/redux": "./src/Redux"
         }
       }
     ]
