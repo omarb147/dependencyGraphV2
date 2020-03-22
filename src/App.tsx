@@ -5,8 +5,6 @@ import { Graph } from '@/components';
 
 export default () => (
   <Provider store={store}>
-    <div>
-      <Graph />
-    </div>
+    <Graph />
   </Provider>
 );
