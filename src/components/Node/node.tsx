@@ -1,24 +1,16 @@
 import React from 'react';
-import { compose } from 'recompose';
 import { Rnd, RndResizeCallback } from 'react-rnd';
-import { withNodes, WithNodesProps } from '@/hoc/withNodes';
+import useNodes from '@/hoc/useNodes';
 import { INode } from '@/type/types';
 import Card from '@/components/Card/Card';
 
-type Props = WithNodesProps & INode;
-
-const Node: React.SFC<Props> = (props) => {
-  const onResizeStop: RndResizeCallback = (
-    e,
-    direction,
-    ref,
-    delta,
-    position,
-  ) => {
-    props.resizeNode(props.id, ref.style.height, ref.style.width);
+const Node: React.SFC<INode> = (props) => {
+  const { nodes, resizeNodeAction: resizeNode } = useNodes();
+  const onResizeStop: RndResizeCallback = (e, direction, ref, delta, position) => {
+    resizeNode(props.id, ref.style.height, ref.style.width);
+    console.log(nodes);
   };
 
-  console.log(props);
   return (
     <Rnd
       key={props.id}
@@ -38,5 +30,4 @@ const Node: React.SFC<Props> = (props) => {
   );
 };
 
-const Wrapper = compose<Props, {}>(withNodes);
-export default Wrapper(Node);
+export default Node;

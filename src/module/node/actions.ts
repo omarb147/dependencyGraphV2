@@ -5,5 +5,6 @@ export const resizeNode = createAction('nodes/RESIZE_NODE')<{
   height: string;
   width: string;
 }>();
+export type ResizeNode = ActionType<typeof resizeNode>;
 
 export type nodeActionTypes = ActionType<typeof resizeNode>;
