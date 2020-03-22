@@ -2,7 +2,7 @@ import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { IGraphState } from '@/type/types';
-import { resizeNode } from '@/redux/Nodes/actions';
+import { resizeNode } from '@/module/Nodes/actions';
 
 const mapStateToProps = (state: IGraphState) => ({ nodes: state.nodes });
 
