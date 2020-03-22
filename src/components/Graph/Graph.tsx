@@ -1,22 +1,15 @@
 import React from 'react';
-import { compose } from 'recompose';
-
-import { IGraphState, INodesState } from '@/type/types';
-import { withNodes, WithNodesProps } from '@/hoc/withNodes';
+import { INodesState } from '@/type/types';
+import useNodes from '@/hoc/useNodes';
 import Node from '@/components/Node/node';
 
-type Props = IGraphState & WithNodesProps;
-
-const Graph: React.SFC<Props> = (props) => {
-  console.log(props);
-  return <div>{generateNodes(props.nodes)}</div>;
-};
-
-const generateNodes = (nodes: INodesState) => Object.keys(nodes).map((id) => {
-  const node = nodes[id];
-  return <Node key={id} {...node} />;
+const generateNodes = (nodes: INodesState) => Object.entries(nodes).map(([id, node]) => {
+  const { text, color } = node;
+  return <Node key={id} id={id} text={text} color={color} />;
 });
 
-const Wrapper = compose<Props, {}>(withNodes);
-
-export default Wrapper(Graph);
+const Graph: React.SFC = () => {
+  const { nodes } = useNodes();
+  return <div>{generateNodes(nodes)}</div>;
+};
+export default Graph;

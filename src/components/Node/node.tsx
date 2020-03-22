@@ -1,33 +1,23 @@
 import React from 'react';
-import { Rnd, RndResizeCallback } from 'react-rnd';
-import useNodes from '@/hoc/useNodes';
+import { Rnd } from 'react-rnd';
 import { INode } from '@/type/types';
 import Card from '@/components/Card/Card';
 
 const Node: React.SFC<INode> = (props) => {
-  const { nodes, resizeNodeAction: resizeNode } = useNodes();
-  const onResizeStop: RndResizeCallback = (e, direction, ref, delta, position) => {
-    resizeNode(props.id, ref.style.height, ref.style.width);
-    console.log(nodes);
-  };
-
+  const { id, text, color } = props;
   return (
     <Rnd
-      key={props.id}
-      className={props.id}
+      key={id}
+      className={id}
       default={{
         x: 0,
         y: 0,
         width: 320,
         height: 200,
       }}
-      onResizeStop={(e, direction, ref, delta, position) => {
-        onResizeStop(e, direction, ref, delta, position);
-      }}
     >
-      <Card text={props.text} color={props.color} size={props.size} />
+      <Card text={text} color={color} />
     </Rnd>
   );
 };
-
 export default Node;

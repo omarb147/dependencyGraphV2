@@ -1,12 +1,16 @@
 import { useSelector as reduxUseSelector, useDispatch, TypedUseSelectorHook } from 'react-redux';
-import { resizeNode, ResizeNode } from '@/module/node/actions';
+import { addNode, AddNode } from '@/module/node/actions';
 import { IGraphState, INodesState } from '@/type/types';
 
 const useSelector: TypedUseSelectorHook<IGraphState> = reduxUseSelector;
 
 export default () => {
+  // Replaces mapStateToProps
   const nodes: INodesState = useSelector((state) => state.nodes);
+
+  // Replaces mapDispatchToProps
   const dispatch = useDispatch();
-  const resizeNodeAction = (id: string, height: string, width: string): ResizeNode => dispatch(resizeNode({ id, height, width }));
-  return { nodes, resizeNodeAction };
+  const addNodeAction = (text: string, color: string): AddNode => dispatch(addNode({ text, color }));
+
+  return { nodes, actions: { addNodeAction } };
 };

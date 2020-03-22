@@ -1,9 +1,5 @@
 export interface INode {
   id: string;
-  size: {
-    height: number;
-    width: number;
-  };
   color: string;
   text: string;
 }
@@ -32,5 +28,5 @@ export interface IVector {
 }
 
 export interface IVectorState {
-vectors: IVector;
+  vectors: IVector;
 }
