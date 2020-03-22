@@ -5,7 +5,16 @@
   },
   "settings": {
     "import/resolver": {
-      "babel-module": {}
+      "alias": {
+        "map": [
+          ["@/type", "./src/type"],
+          ["@/hoc", "./src/hoc"],
+          ["@/components", "./src/components"],
+          ["@/redux", "./src/redux"],
+          ["@/src", "./src"]
+        ],
+        "extensions": [".ts", ".tsx"]
+      }
     }
   },
   "extends": [
