@@ -11,7 +11,7 @@
           ["@/type", "./src/type"],
           ["@/hoc", "./src/hoc"],
           ["@/components", "./src/components"],
-          ["@/redux", "./src/Redux"],
+          ["@/module", "./src/module"],
           ["@/src", "./src"]
         ],
         "extensions": [".ts", ".tsx"]
