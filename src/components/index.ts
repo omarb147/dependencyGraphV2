@@ -1,8 +1,8 @@
 import Card from './Card/Card';
 import Node from './Node/node';
 import Graph from './Graph/Graph';
-import Overlay from './Overlay';
+import Nav from './Nav';
 
 export {
-  Card, Node, Graph, Overlay,
+  Card, Node, Graph, Nav,
 };
