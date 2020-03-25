@@ -12,6 +12,8 @@
           ["@/hoc", "./src/hoc"],
           ["@/components", "./src/components"],
           ["@/module", "./src/module"],
+          ["@/data", "./data"],
+          ["@/service", "./src/service"],
           ["@/src", "./src"]
         ],
         "extensions": [".ts", ".tsx"]
