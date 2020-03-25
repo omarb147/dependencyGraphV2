@@ -1,9 +1,9 @@
 import { createAction, ActionType } from 'typesafe-actions';
 
-export const resizeNode = createAction('nodes/RESIZE_NODE')<{
-  id: string;
-  height: string;
-  width: string;
+export const addNode = createAction('nodes/ADD_NODE')<{
+  text: string;
+  color: string;
 }>();
+export type AddNode = ActionType<typeof addNode>;
 
-export type nodeActionTypes = ActionType<typeof resizeNode>;
+export type nodeActionTypes = AddNode;

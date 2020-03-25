@@ -4,10 +4,6 @@ import styled from 'styled-components';
 interface ICardProps {
   color: string;
   text: string;
-  size: {
-    height: number;
-    width: number;
-  };
   selected?: boolean;
   className?: string;
 }
