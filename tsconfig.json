@@ -19,7 +19,9 @@
       "@/type/*": ["src/type/*"],
       "@/components": ["src/components"],
       "@/components/*": ["src/components/*"],
-      "@/module/*": ["src/module/*"]
+      "@/module/*": ["src/module/*"],
+      "@/service/*": ["src/service/*"],
+      "@/data/*": ["data/*"]
     },
     "moduleResolution": "node"
   },

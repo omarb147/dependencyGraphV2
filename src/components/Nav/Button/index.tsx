@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { getBacklogTickets } from '@/service/csvMapper';
 
 const Button = styled.button``;
 
@@ -27,7 +28,8 @@ const handleUploadOnChange = (e: any) => {
       reader.onloadend = (event) => {
         const content = event?.target?.result;
         if (content) {
-          console.log(content);
+          // @ts-ignore
+          console.log(getBacklogTickets(content));
         }
       };
       reader.readAsText(files[0]);

@@ -30,3 +30,7 @@ export interface IVector {
 export interface IVectorState {
   vectors: IVector;
 }
+
+export interface IGenericObject {
+  [index: string]: string;
+}
