@@ -1,9 +1,9 @@
 import React from 'react';
 import { Rnd } from 'react-rnd';
 import { INode } from '@/type/types';
-import Card from '@/components/Card/Card';
+import Card from '@/components/Card';
 
-const Node: React.SFC<INode> = (props) => {
+const Node: React.SFC<INode> = (props: INode) => {
   const { id, text, color } = props;
   return (
     <Rnd
