@@ -1,25 +1,22 @@
 import { IGenericObject } from '@/type/types';
 
-export const getIndexByString = (array: string[], text: string): number|undefined => {
+export const getIndexByString = (array: string[], text: string): number | undefined => {
   const row = array.find((string) => string.includes(text));
   return row ? array.indexOf(row) : undefined;
 };
 
+export const getBacklogSection = (csv: string[]): string[] | undefined => {
+  const backlogRowIndex = getIndexByString(csv, 'Backlog');
+  const todayRowIndex = getIndexByString(csv, 'Today');
+  return backlogRowIndex !== undefined && todayRowIndex !== undefined ? csv.slice(backlogRowIndex, todayRowIndex) : undefined;
+};
 
-export const getBacklogTickets = (csv: string): string | {[index: string]: IGenericObject } => {
-  try {
-    const csvAsArray = csv.split('\n');
-    const backlogRowIndex = getIndexByString(csvAsArray, 'Backlog');
-    const todayRowIndex = getIndexByString(csvAsArray, 'Today');
+export const mapCSVtoObject = (csv: string): string | {[index: string]: IGenericObject } => {
+  const csvAsArray = csv.split('\n');
 
-    if (!backlogRowIndex || !todayRowIndex) {
-      throw Error('Unable to find backlog section');
-    }
-
-    const backlogSection = csvAsArray.slice(backlogRowIndex, todayRowIndex);
-
+  const backlogSection = getBacklogSection(csvAsArray);
+  if (backlogSection) {
     const [title, headers, ...tickets] = backlogSection;
-
     const fields = headers.split(',').map((header) => header.trim());
 
     // Regex to only find commas outside of double quotes
@@ -27,15 +24,19 @@ export const getBacklogTickets = (csv: string): string | {[index: string]: IGene
 
     return tickets.reduce((row, ticket) => {
       const ticketFields = ticket.split(regex);
-      return {
-        ...row,
-        [ticketFields[fields.indexOf('Item ID')]]: fields.reduce((acc, field, index) => ({
-          ...acc,
-          [field]: ticketFields[index],
-        }), {}),
-      };
+      const itemID = ticketFields[fields.indexOf('Item ID')];
+      if (itemID) {
+        return {
+          ...row,
+          [itemID]: fields.reduce((acc, field, index) => ({
+            ...acc,
+            [field]: ticketFields[index],
+          }), {}),
+        };
+      }
+      return { ...row };
     }, {});
-  } catch (error) {
-    return error.message;
   }
+
+  return {};
 };
