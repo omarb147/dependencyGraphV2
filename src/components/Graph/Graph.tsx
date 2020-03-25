@@ -1,6 +1,7 @@
 import React from 'react';
 import { INodesState } from '@/type/types';
-import { useNodes, useAddNodeAction } from '@/module/node/hooks';
+import NodesDispatchClass from '@/module/node/dispatch';
+import NodesSelectorClass from '@/module/node/selectors';
 import Node from '@/components/Node/node';
 
 const generateNodes = (nodes: INodesState) => Object.entries(nodes).map(([id, node]) => {
@@ -9,12 +10,15 @@ const generateNodes = (nodes: INodesState) => Object.entries(nodes).map(([id, no
 });
 
 const Graph: React.SFC = () => {
-  const nodes = useNodes();
-  const addNodeAction = useAddNodeAction();
+  const NodesDispatch = new NodesDispatchClass();
+  const NodesSelector = new NodesSelectorClass();
+
+  const nodes = NodesSelector.useNodes();
+
   return (
     <div>
       {generateNodes(nodes)}
-      <button type="button" onClick={() => addNodeAction('test', 'green')}>
+      <button type="button" onClick={() => NodesDispatch.addNode('test', 'green')}>
         Test
       </button>
     </div>
