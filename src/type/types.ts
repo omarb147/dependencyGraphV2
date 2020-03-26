@@ -9,9 +9,12 @@ export interface INodeSize {
 }
 
 export interface INode {
-  id: string;
-  color: string;
+  itemId: string;
   text: string;
+  status: string;
+  labels: string;
+  points: string;
+  color: string;
   position: INodeCoordinates;
   size: { height: number; width: number };
 }

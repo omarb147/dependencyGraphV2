@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import NodesDispatchClass from '@/module/node/dispatch';
+import { v4 as uuidV4 } from 'uuid';
 import Button from './Button';
 
 const NavBar = styled.div`
@@ -15,8 +17,26 @@ const NavBar = styled.div`
 `;
 
 
-export default () => (
-  <NavBar>
-    <Button />
-  </NavBar>
-);
+export default () => {
+  const NodesDispatch = new NodesDispatchClass();
+  return (
+    <NavBar>
+      <button
+        type="button"
+        onClick={() => NodesDispatch.addNode({
+          itemId: uuidV4(),
+          text: 'test',
+          color: 'green',
+          status: '',
+          labels: 'template',
+          points: '2',
+          position: { x: 0, y: 0 },
+          size: { height: 120, width: 320 },
+        })}
+      >
+        Test
+      </button>
+      <Button />
+    </NavBar>
+  );
+};

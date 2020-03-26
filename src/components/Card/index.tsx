@@ -8,13 +8,16 @@ interface ICardFrameProps {
 }
 
 interface ICardProps extends ICardFrameProps {
+  points: string;
+  status: string;
+  labels: string;
   text: string;
 }
 
 const CardFrame = styled.div<ICardFrameProps>`
   background-color: #ffffff;
-  border: ${(props) => (props.selected ? `5px solid ${props.color}` : 'none')};
-  border-top: 5px solid ${(props) => props.color};
+  border: ${(props): string => (props.selected ? `5px solid ${props.color}` : 'none')};
+  border-top: 5px solid ${(props): string => props.color};
   width: 100%;
   height: 100%;
   box-shadow: 0px 5px 10px #c9c9c9;
@@ -28,10 +31,10 @@ const UserStoryWrapper = styled.div`
   justify-content: space-between;
 `;
 
-const Point = styled.div`
+const Point = styled.div<{ color: string }>`
   padding: 0.25rem 0.4rem;
   font-size: 1.2rem;
-  background-color: ${(props) => props.color};
+  background-color: ${(props): string => props.color};
   color: #ffffff;
   margin-right: 0.5rem;
   opacity: 0.7;

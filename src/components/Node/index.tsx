@@ -11,12 +11,12 @@ interface INodeComponentProps extends Omit<INode, 'position'> {
 
 const Node: React.FC<INodeComponentProps> = (props: INodeComponentProps) => {
   const {
-    id, text, color, selected, size,
+    text, color, selected, size, itemId, points, status, labels
   } = props;
   const { NodesDispatch, selectedNodes } = useNodeWrap();
   return (
     <Rnd
-      key={id}
+      key={itemId}
       enableResizing={{
         top: false,
         right: false,
@@ -27,7 +27,7 @@ const Node: React.FC<INodeComponentProps> = (props: INodeComponentProps) => {
         bottomLeft: false,
         topLeft: false,
       }}
-      className={id}
+      className={itemId}
       default={{
         x: 0,
         y: 0,
@@ -35,13 +35,13 @@ const Node: React.FC<INodeComponentProps> = (props: INodeComponentProps) => {
         height: size.height,
       }}
       onDragStart={() => {
-        selectNode(selectedNodes, id, selected, NodesDispatch);
+        selectNode(selectedNodes, itemId, selected, NodesDispatch);
       }}
       onDrag={(e, data): void => {
-        updateNodePosition(data, NodesDispatch, id);
+        updateNodePosition(data, NodesDispatch, itemId);
       }}
     >
-      <Card text={text} color={color} selected={selected} />
+      <Card text={text} color={color} selected={selected} points={points} status={status} labels={labels} />
     </Rnd>
   );
 };

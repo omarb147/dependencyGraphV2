@@ -15,9 +15,23 @@ interface IVectorsObject {
 }
 
 export const generateNodes = (nodes: INodesObject, selectedNodes: string[]): JSX.Element[] => Object.entries(nodes).map(([id, node]) => {
-  const { text, color, size } = node;
+  const {
+    text, color, size, status, labels, points,
+  } = node;
   const selected = selectedNodes.includes(id);
-  return <Node key={id} id={id} text={text} color={color} selected={selected} size={size} />;
+  return (
+    <Node
+      key={id}
+      itemId={id}
+      points={points}
+      text={text}
+      color={color}
+      selected={selected}
+      size={size}
+      status={status}
+      labels={labels}
+    />
+  );
 });
 
 export const generateVectors = (vectors: IVectorsObject): JSX.Element[] => Object.entries(vectors).map(([id, vector]) => {

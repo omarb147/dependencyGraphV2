@@ -1,10 +1,11 @@
 import { createAction, ActionType } from 'typesafe-actions';
+import { INode } from '@/type/types';
 
 export const addNode = createAction('nodes/ADD_NODE')<{
-  id: string;
-  text: string;
-  color: string;
+  node: INode;
 }>();
+
+export type AddNode = ActionType<typeof addNode>;
 
 export const updateNodePosition = createAction('nodes/UPDATE_NODE_POSITION')<{
   id: string;

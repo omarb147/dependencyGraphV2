@@ -6,16 +6,24 @@ export const getIndexByString = (array: string[], text: string): number | undefi
 };
 
 export const getBacklogSection = (csv: string[]): string[] | undefined => {
-  const backlogRowIndex = getIndexByString(csv, 'Backlog');
-  const todayRowIndex = getIndexByString(csv, 'Today');
+  const backlogRowIndex = getIndexByString(csv, '~Backlog');
+  const todayRowIndex = getIndexByString(csv, '~Today');
   return backlogRowIndex !== undefined && todayRowIndex !== undefined
     ? csv.slice(backlogRowIndex, todayRowIndex)
     : undefined;
 };
 
+export const formatHeader = (header: string): string => {
+  const lowerCase = header.trim().toLowerCase();
+  const simpleCamelCase = lowerCase.split(' ').reduce((acc, word) => {
+    const [firstLetter, ...rest] = [...word];
+    return `${acc}${firstLetter.toUpperCase()}${rest.join('')}`;
+  });
+  return simpleCamelCase;
+};
+
 export const mapCSVtoObject = (csv: string): string | {[index: string]: IGenericObject } => {
   const csvAsArray = csv.split('\n');
-
   const backlogSection = getBacklogSection(csvAsArray);
   if (backlogSection) {
     const [title, headers, ...tickets] = backlogSection;
@@ -32,7 +40,7 @@ export const mapCSVtoObject = (csv: string): string | {[index: string]: IGeneric
           ...row,
           [itemID]: fields.reduce((acc, field, index) => ({
             ...acc,
-            [field]: ticketFields[index],
+            [formatHeader(field)]: ticketFields[index],
           }), {}),
         };
       }

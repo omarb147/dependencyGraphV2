@@ -1,5 +1,7 @@
 import { correctCSV, incorrectCSV } from './csvMapperMock';
-import { getIndexByString, getBacklogSection, mapCSVtoObject } from '../csvMapper';
+import {
+  getIndexByString, getBacklogSection, mapCSVtoObject, formatHeader,
+} from '../csvMapper';
 
 describe('getIndexByString', () => {
   it('should return undefined if array is empty', () => {
@@ -89,5 +91,19 @@ describe('mapCSVtoObject', () => {
 
   it('should return an empty object if the csv is in the incorrect format', () => {
     expect(mapCSVtoObject(incorrectCSV)).toEqual({});
+  });
+});
+
+describe.only('formatHeader', () => {
+  it('should format a normal string', () => {
+    expect(formatHeader('UpperCamel')).toEqual('uppercamel');
+  });
+
+  it('should format a string that has extra spaces on either end', () => {
+    expect(formatHeader(' withSpAcE  ')).toEqual('withspace');
+  });
+
+  it('should format a string with multiple words', () => {
+    expect(formatHeader(' a unicorn flies  ')).toEqual('aUnicornFlies');
   });
 });
