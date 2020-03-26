@@ -8,12 +8,22 @@ const Node: React.SFC<INode> = (props: INode) => {
   return (
     <Rnd
       key={id}
+      enableResizing={{
+        top: false,
+        right: false,
+        bottom: false,
+        left: false,
+        topRight: false,
+        bottomRight: false,
+        bottomLeft: false,
+        topLeft: false,
+      }}
       className={id}
       default={{
         x: 0,
         y: 0,
-        width: 320,
-        height: 200,
+        width: 'auto',
+        height: 'auto',
       }}
     >
       <Card text={text} color={color} />
