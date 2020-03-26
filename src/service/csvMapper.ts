@@ -27,7 +27,7 @@ export const mapCSVtoObject = (csv: string): string | {[index: string]: IGeneric
     return tickets.reduce((row, ticket) => {
       const ticketFields = ticket.split(regex);
       const itemID = ticketFields[fields.indexOf('Item ID')];
-      if (itemID) {
+      if (itemID.trim()) {
         return {
           ...row,
           [itemID]: fields.reduce((acc, field, index) => ({
