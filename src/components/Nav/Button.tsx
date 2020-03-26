@@ -5,31 +5,27 @@ import { mapCSVtoObject } from '@/service/csvMapper';
 const Button = styled.button``;
 
 const FileUpload = styled.input`
-display:none;
+  display:none;
 `;
 
 const handleOnClick = () => {
-  console.log('clicked');
   const uploadButton = document.getElementById('csvUpload');
-  console.log(uploadButton);
   if (uploadButton) {
     uploadButton.click();
   }
 };
 
-const handleUploadOnChange = (e: any) => {
-  console.log('in handle on change');
-  const uploadInput = document.getElementById('csvUpload');
-  if (uploadInput) {
-    // @ts-ignore
+const handleUploadOnChange = () => {
+  const uploadInput = document.getElementById('csvUpload') as HTMLInputElement;
+  if (uploadInput && uploadInput.files) {
     const { files } = uploadInput;
-    if (files[0].type === 'text/csv') {
+    if (files && files[0].type === 'text/csv') {
       const reader = new FileReader();
       reader.onloadend = (event) => {
         const content = event?.target?.result;
-        if (content) {
-          // @ts-ignore
-          console.log(mapCSVtoObject(content));
+        if (content && typeof content === 'string') {
+          const tickets = mapCSVtoObject(content);
+          console.log(tickets);
         }
       };
       reader.readAsText(files[0]);

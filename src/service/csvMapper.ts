@@ -8,7 +8,9 @@ export const getIndexByString = (array: string[], text: string): number | undefi
 export const getBacklogSection = (csv: string[]): string[] | undefined => {
   const backlogRowIndex = getIndexByString(csv, 'Backlog');
   const todayRowIndex = getIndexByString(csv, 'Today');
-  return backlogRowIndex !== undefined && todayRowIndex !== undefined ? csv.slice(backlogRowIndex, todayRowIndex) : undefined;
+  return backlogRowIndex !== undefined && todayRowIndex !== undefined
+    ? csv.slice(backlogRowIndex, todayRowIndex)
+    : undefined;
 };
 
 export const mapCSVtoObject = (csv: string): string | {[index: string]: IGenericObject } => {
