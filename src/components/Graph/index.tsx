@@ -2,7 +2,7 @@ import React from 'react';
 import { INodesState } from '@/type/types';
 import NodesDispatchClass from '@/module/node/dispatch';
 import NodesSelectorClass from '@/module/node/selectors';
-import Node from '@/components/Node/node';
+import Node from '@/components/Node';
 
 const generateNodes = (nodes: INodesState) => Object.entries(nodes).map(([id, node]) => {
   const { text, color } = node;

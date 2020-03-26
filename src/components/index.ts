@@ -1,6 +1,6 @@
-import Card from './Card/Card';
-import Node from './Node/node';
-import Graph from './Graph/Graph';
+import Card from './Card';
+import Node from './Node';
+import Graph from './Graph';
 import Nav from './Nav';
 
 export {
