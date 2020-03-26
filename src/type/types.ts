@@ -16,9 +16,20 @@ export interface INode {
   size: { height: number; width: number };
 }
 
+export interface IFullNode {
+  [index: string]: INode;
+}
+
 export interface INodesState {
-  nodes: { [key: string]: INode };
   selectedNodes: string[];
+  nodes: IFullNode;
+}
+
+export interface ILink {
+  id: string;
+  from: string;
+  to: string;
+  orientation: string;
 }
 
 export interface IGraphState {
