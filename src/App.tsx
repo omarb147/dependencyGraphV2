@@ -9,7 +9,8 @@ const GlobalStyle = createGlobalStyle`
   body {
   height:100%;
   margin: 0;
-  position:relative
+  position:relative;
+  font-family: 'Quicksand';
   }
   * {
     box-sizing: border-box;
