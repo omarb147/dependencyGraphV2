@@ -2,9 +2,35 @@ import React from 'react';
 import { Rnd } from 'react-rnd';
 import { INode } from '@/type/types';
 import Card from '@/components/Card';
+import NodesDispatchClass from '@/module/node/dispatch';
+import NodesSelectorClass from '@/module/node/selectors';
 
-const Node: React.SFC<INode> = (props: INode) => {
-  const { id, text, color } = props;
+interface INodeComponentProps extends INode {
+  selected: boolean;
+}
+
+const selectNode = (
+  selectedNodes: string[],
+  id: string,
+  selected: boolean,
+  NodesDispatch: NodesDispatchClass,
+): void => {
+  // should not have more than 2 items selected
+  if (selected) {
+    NodesDispatch.deselectNode(id);
+  } else {
+    if (selectedNodes.length >= 2) NodesDispatch.deselectAllNodes();
+    NodesDispatch.selectNode(id);
+  }
+};
+
+const Node: React.FC<INodeComponentProps> = (props: INodeComponentProps) => {
+  const NodesDispatch = new NodesDispatchClass();
+  const NodesSelector = new NodesSelectorClass();
+  const selectedNodes = NodesSelector.useSelectedNodes();
+  const {
+    id, text, color, selected,
+  } = props;
   return (
     <Rnd
       key={id}
@@ -25,9 +51,13 @@ const Node: React.SFC<INode> = (props: INode) => {
         width: 'auto',
         height: 'auto',
       }}
+      onDragStart={() => {
+        selectNode(selectedNodes, id, selected, NodesDispatch);
+      }}
     >
-      <Card text={text} color={color} />
+      <Card text={text} color={color} selected={selected} />
     </Rnd>
   );
 };
+
 export default Node;
