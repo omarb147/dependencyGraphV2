@@ -1,29 +1,65 @@
 import { getType } from 'typesafe-actions';
 import { INodesState } from '@/type/types';
 import uniqid from 'uniqid';
-import { addNode, nodeActionTypes } from './actions';
+import {
+  addNode,
+  nodeActionTypes,
+  selectNode,
+  deselectNode,
+  deselectAllNodes,
+} from './actions';
 
 const initialState: INodesState = {
-  node123: {
-    id: 'node123',
-    color: 'red',
-    text: 'first node in',
+  nodes: {
+    node123: {
+      id: 'node123',
+      color: 'red',
+      text: 'first node in',
+    },
   },
+  selectedNodes: [],
 };
 
-export default (state: INodesState = initialState, action: nodeActionTypes): INodesState => {
+export default (
+  state: INodesState = initialState,
+  action: nodeActionTypes,
+): INodesState => {
   switch (action.type) {
     case getType(addNode): {
       const id = uniqid('node-');
       return {
         ...state,
-        [id]: {
-          id,
-          color: action.payload.color,
-          text: action.payload.text,
+        nodes: {
+          ...state.nodes,
+          [id]: {
+            id,
+            color: action.payload.color,
+            text: action.payload.text,
+          },
         },
       };
     }
+    case getType(selectNode):
+      return {
+        ...state,
+        selectedNodes: [...state.selectedNodes, action.payload.id],
+      };
+    case getType(deselectNode): {
+      const index = state.selectedNodes.findIndex(
+        (nodeID) => nodeID === action.payload.id,
+      );
+      return index !== -1
+        ? {
+          ...state,
+          selectedNodes: [
+            ...state.selectedNodes.slice(0, index),
+            ...state.selectedNodes.slice(index + 1),
+          ],
+        }
+        : state;
+    }
+    case getType(deselectAllNodes):
+      return { ...state, selectedNodes: [] };
     default: {
       return state;
     }
