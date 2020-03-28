@@ -1,10 +1,16 @@
 import DispatchClass from '@/module/util/rootDispatch';
 import {
-  addNode, selectNode, deselectNode, deselectAllNodes,
+  addNode,
+  selectNode,
+  deselectNode,
+  deselectAllNodes,
+  updateNodePosition,
 } from './actions';
 
 export default class NodesDispatch extends DispatchClass {
   addNode = (text: string, color: string) => this.dispatch(addNode({ text, color }));
+
+  updateNodePosition = (id: string, x: number, y: number) => this.dispatch(updateNodePosition({ id, x, y }));
 
   selectNode = (id: string) => this.dispatch(selectNode({ id }));
 

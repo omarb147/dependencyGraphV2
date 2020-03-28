@@ -7,6 +7,7 @@ import {
   selectNode,
   deselectNode,
   deselectAllNodes,
+  updateNodePosition,
 } from './actions';
 
 const initialState: INodesState = {
@@ -15,6 +16,7 @@ const initialState: INodesState = {
       id: 'node123',
       color: 'red',
       text: 'first node in',
+      position: { x: 0, y: 0 },
     },
   },
   selectedNodes: [],
@@ -35,6 +37,23 @@ export default (
             id,
             color: action.payload.color,
             text: action.payload.text,
+            position: { x: 0, y: 0 },
+          },
+        },
+      };
+    }
+    case getType(updateNodePosition): {
+      const { id, x, y } = action.payload;
+      return {
+        ...state,
+        nodes: {
+          ...state.nodes,
+          [id]: {
+            ...state.nodes[id],
+            position: {
+              x,
+              y,
+            },
           },
         },
       };

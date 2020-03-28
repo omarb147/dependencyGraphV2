@@ -2,6 +2,7 @@ export interface INode {
   id: string;
   color: string;
   text: string;
+  position: { x: number; y: number };
 }
 
 export interface INodesState {
