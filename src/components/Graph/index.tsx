@@ -55,7 +55,6 @@ const Graph: React.FC = () => {
   const vectors = VectorsSelectors.useVectors();
 
   const keyDown = useKeyPress('Enter');
-
   /* eslint-disable */
   keyDown && addVector(selectedNodes, VectorDispatch, NodesDispatch);
 
