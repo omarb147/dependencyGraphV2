@@ -5,7 +5,7 @@ import Card from '@/components/Card';
 import NodesDispatchClass from '@/module/node/dispatch';
 import NodesSelectorClass from '@/module/node/selectors';
 
-interface INodeComponentProps extends Omit<INode, 'position' | 'size'> {
+interface INodeComponentProps extends Omit<INode, 'position'> {
   selected: boolean;
 }
 
@@ -38,7 +38,7 @@ const Node: React.FC<INodeComponentProps> = (props: INodeComponentProps) => {
   const NodesSelector = new NodesSelectorClass();
   const selectedNodes = NodesSelector.useSelectedNodes();
   const {
-    id, text, color, selected,
+    id, text, color, selected, size,
   } = props;
   return (
     <Rnd
@@ -57,8 +57,8 @@ const Node: React.FC<INodeComponentProps> = (props: INodeComponentProps) => {
       default={{
         x: 0,
         y: 0,
-        width: 'auto',
-        height: 'auto',
+        width: size.width,
+        height: size.height,
       }}
       onDragStart={() => {
         selectNode(selectedNodes, id, selected, NodesDispatch);

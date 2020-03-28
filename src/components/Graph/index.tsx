@@ -20,10 +20,17 @@ const generateNodes = (
   nodes: { [index: string]: INode },
   selectedNodes: string[],
 ) => Object.entries(nodes).map(([id, node]) => {
-  const { text, color } = node;
+  const { text, color, size } = node;
   const selected = selectedNodes.includes(id) === true;
   return (
-    <Node key={id} id={id} text={text} color={color} selected={selected} />
+    <Node
+      key={id}
+      id={id}
+      text={text}
+      color={color}
+      selected={selected}
+      size={size}
+    />
   );
 });
 
