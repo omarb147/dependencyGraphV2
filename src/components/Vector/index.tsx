@@ -2,6 +2,7 @@ import React from 'react';
 // @ts-ignore
 import { SteppedLine } from 'react-lineto';
 import NodeSelectorClass from '@/module/node/selectors';
+import VectorDispatchClass from '@/module/vector/dispatch';
 import { IVector, INodeCoordinates, INodeSize } from '@/type/types';
 
 const formatVectorToFrom = (
@@ -68,6 +69,8 @@ const formatVectorToFrom = (
 const Vector: React.FC<IVector> = (props: IVector) => {
   const { id, fromNodeId, toNodeId } = props;
   const NodeSelector = new NodeSelectorClass();
+  const VectorDispatch = new VectorDispatchClass();
+
   const {
     position: fromNodePosition,
     size: fromNodeSize,
@@ -84,16 +87,23 @@ const Vector: React.FC<IVector> = (props: IVector) => {
     toNodeSize,
   );
   return (
-    <SteppedLine
-      key={id}
-      x0={coords.x0}
-      y0={coords.y0}
-      x1={coords.x1}
-      y1={coords.y1}
-      orientation={coords.orientation}
-      borderWidth={2.5}
-      borderColor="yellow"
-    />
+    /* eslint-disable */
+    <div
+      onClick={() => {
+        VectorDispatch.deleteVector(id);
+        console.log('clicked');
+      }}
+    >
+      <SteppedLine
+        key={id}
+        x0={coords.x0}
+        y0={coords.y0}
+        x1={coords.x1}
+        y1={coords.y1}
+        orientation={coords.orientation}
+        borderWidth={2.5}
+      />
+    </div>
   );
 };
 
