@@ -1,8 +1,19 @@
+export interface INodeCoordinates {
+  x: number;
+  y: number;
+}
+
+export interface INodeSize {
+  height: number;
+  width: number;
+}
+
 export interface INode {
   id: string;
   color: string;
   text: string;
-  position: { x: number; y: number };
+  position: INodeCoordinates;
+  size: { height: number; width: number };
 }
 
 export interface INodesState {

@@ -17,6 +17,7 @@ const initialState: INodesState = {
       color: 'red',
       text: 'first node in',
       position: { x: 0, y: 0 },
+      size: { height: 120, width: 320 },
     },
   },
   selectedNodes: [],
@@ -38,6 +39,7 @@ export default (
             color: action.payload.color,
             text: action.payload.text,
             position: { x: 0, y: 0 },
+            size: { height: 120, width: 320 },
           },
         },
       };
