@@ -1,9 +1,5 @@
 {
-  "presets": [
-    "@babel/preset-env",
-    "@babel/preset-typescript",
-    "@babel/preset-react"
-  ],
+  "presets": ["@babel/preset-env", "@babel/preset-typescript", "@babel/preset-react"],
   "plugins": [
     "@babel/proposal-class-properties",
     "@babel/proposal-object-rest-spread",
@@ -17,7 +13,8 @@
           "@/components": "./src/components",
           "@/service": "./src/service",
           "@/data": "./data",
-          "@/module": "./src/module"
+          "@/module": "./src/module",
+          "@/hooks": "./src/hooks"
         }
       }
     ]

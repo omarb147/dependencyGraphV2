@@ -17,6 +17,7 @@
       "@/src/*": ["src"],
       "@/hoc/*": ["src/hoc/*"],
       "@/type/*": ["src/type/*"],
+      "@/hooks/*": ["src/hooks/*"],
       "@/components": ["src/components"],
       "@/components/*": ["src/components/*"],
       "@/module/*": ["src/module/*"],
