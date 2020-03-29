@@ -5,5 +5,5 @@ import Nav from './Nav';
 import Vector from './Vector';
 
 export {
-  Card, Node, Graph, Nav,
+  Card, Node, Graph, Nav, Vector,
 };

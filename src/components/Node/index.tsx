@@ -1,45 +1,19 @@
 import React from 'react';
-import { Rnd, DraggableData } from 'react-rnd';
+import { Rnd } from 'react-rnd';
 import { INode } from '@/type/types';
 import Card from '@/components/Card';
-import NodesDispatchClass from '@/module/node/dispatch';
-import NodesSelectorClass from '@/module/node/selectors';
+import { selectNode, updateNodePosition } from './nodeActionHandlers';
+import { useNodeWrap } from './node.wrap';
 
 interface INodeComponentProps extends Omit<INode, 'position'> {
   selected: boolean;
 }
 
-const selectNode = (
-  selectedNodes: string[],
-  id: string,
-  selected: boolean,
-  NodesDispatch: NodesDispatchClass,
-): void => {
-  // should not have more than 2 items selected
-  if (selected) {
-    NodesDispatch.deselectNode(id);
-  } else {
-    if (selectedNodes.length >= 2) NodesDispatch.deselectAllNodes();
-    NodesDispatch.selectNode(id);
-  }
-};
-
-const onNodeDrag = (
-  data: DraggableData,
-  NodesDispatch: NodesDispatchClass,
-  nodeId: string,
-): void => {
-  const { x, y } = data;
-  NodesDispatch.updateNodePosition(nodeId, x, y);
-};
-
 const Node: React.FC<INodeComponentProps> = (props: INodeComponentProps) => {
-  const NodesDispatch = new NodesDispatchClass();
-  const NodesSelector = new NodesSelectorClass();
-  const selectedNodes = NodesSelector.useSelectedNodes();
   const {
     id, text, color, selected, size,
   } = props;
+  const { NodesDispatch, selectedNodes } = useNodeWrap();
   return (
     <Rnd
       key={id}
@@ -64,7 +38,7 @@ const Node: React.FC<INodeComponentProps> = (props: INodeComponentProps) => {
         selectNode(selectedNodes, id, selected, NodesDispatch);
       }}
       onDrag={(e, data): void => {
-        onNodeDrag(data, NodesDispatch, id);
+        updateNodePosition(data, NodesDispatch, id);
       }}
     >
       <Card text={text} color={color} selected={selected} />
