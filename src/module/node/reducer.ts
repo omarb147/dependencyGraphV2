@@ -1,6 +1,6 @@
 import { getType } from 'typesafe-actions';
 import { INodesState } from '@/type/types';
-import uniqid from 'uniqid';
+
 import {
   addNode,
   nodeActionTypes,
@@ -23,13 +23,10 @@ const initialState: INodesState = {
   selectedNodes: [],
 };
 
-export default (
-  state: INodesState = initialState,
-  action: nodeActionTypes,
-): INodesState => {
+export default (state: INodesState = initialState, action: nodeActionTypes): INodesState => {
   switch (action.type) {
     case getType(addNode): {
-      const id = uniqid('node-');
+      const { id } = action.payload;
       return {
         ...state,
         nodes: {
@@ -66,9 +63,7 @@ export default (
         selectedNodes: [...state.selectedNodes, action.payload.id],
       };
     case getType(deselectNode): {
-      const index = state.selectedNodes.findIndex(
-        (nodeID) => nodeID === action.payload.id,
-      );
+      const index = state.selectedNodes.findIndex((nodeID) => nodeID === action.payload.id);
       return index !== -1
         ? {
           ...state,

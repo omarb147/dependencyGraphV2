@@ -1,6 +1,7 @@
 import { createAction, ActionType } from 'typesafe-actions';
 
 export const addNode = createAction('nodes/ADD_NODE')<{
+  id: string;
   text: string;
   color: string;
 }>();
