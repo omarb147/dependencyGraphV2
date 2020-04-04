@@ -2,7 +2,7 @@ import { INode, IHeadingMap, Headings } from '@/type/types';
 
 export const getHeadersIndex = (csv: string[]): number | undefined => {
   // Looks specifically for a row with these headers
-  const headers = ['Name', 'Status', 'Labels', 'Points', 'Item ID', 'Priority Order'];
+  const headers = ['Name', 'Status', 'Labels', 'Points', 'Item ID'];
   let headerIndex: number | null = null;
 
   // Look for the row with the header
