@@ -10,9 +10,9 @@ interface IFormattedVectorCoords {
 
 export const calculateVectorCoords = (
   fromNodePosition: INodeCoordinates,
-  fromNodeSize: INodeSize,
+  fromNodeSize: INodeSize ,
   toNodePosition: INodeCoordinates,
-  toNodeSize: INodeSize,
+  toNodeSize: INodeSize ,
 ): IFormattedVectorCoords => {
   const coords = {
     x0: 0,

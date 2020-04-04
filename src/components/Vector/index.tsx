@@ -22,7 +22,7 @@ const Vector: React.FC<IVector> = (props: IVector) => {
         VectorDispatch.deleteVector(id);
       }}
     >
-      <SteppedLine
+    <SteppedLine
         key={id}
         x0={coords.x0}
         y0={coords.y0}
@@ -30,7 +30,8 @@ const Vector: React.FC<IVector> = (props: IVector) => {
         y1={coords.y1}
         orientation={coords.orientation}
         borderWidth={2.5}
-      />
+        zIndex={-1}
+      />  
     </div>
   );
 };
