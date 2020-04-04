@@ -8,6 +8,7 @@ import {
   deselectNode,
   deselectAllNodes,
   updateNodePosition,
+  updateNodeSize,
 } from './actions';
 
 const initialState: INodesState = {
@@ -17,7 +18,7 @@ const initialState: INodesState = {
       color: 'red',
       name: 'first node in',
       position: { x: 0, y: 0 },
-      size: { height: 120, width: 320 },
+      size:{height:0, width:0},
       labels: '#sprintGoal',
       points: '2',
       status: 'Create Survey',
@@ -43,8 +44,24 @@ export default (state: INodesState = initialState, action: nodeActionTypes): INo
             status,
             labels,
             points,
+            size:{height:0, width:0},
             position: { x: 0, y: 0 },
-            size: { height: 120, width: 320 },
+          },
+        },
+      };
+    }
+    case getType(updateNodeSize):{
+      const { id, height, width } = action.payload;
+      return {
+        ...state,
+        nodes: {
+          ...state.nodes,
+          [id]: {
+            ...state.nodes[id],
+            size: {
+              height,
+              width,
+            },
           },
         },
       };

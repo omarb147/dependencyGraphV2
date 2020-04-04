@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Rnd } from 'react-rnd';
 import { INode } from '@/type/types';
 import Card from '@/components/Card';
@@ -14,8 +14,17 @@ const Node: React.FC<INodeComponentProps> = (props: INodeComponentProps) => {
     name, color, selected, size, itemId, points, status, labels
   } = props;
   const { NodesDispatch, selectedNodes } = useNodeWrap();
+
+  useEffect(() => {
+    const component = document.querySelector(`#${itemId}`) as HTMLElement;
+    const {offsetHeight, offsetWidth} = component
+    NodesDispatch.updateNodeSize(itemId,offsetHeight,offsetWidth)
+  },[])
+
+
   return (
     <Rnd
+      id={itemId}
       key={itemId}
       enableResizing={{
         top: false,
@@ -31,14 +40,14 @@ const Node: React.FC<INodeComponentProps> = (props: INodeComponentProps) => {
       default={{
         x: 0,
         y: 0,
-        width: size.width,
-        height: size.height,
+        width:"auto",
+        height:"auto",
       }}
-      onDragStart={() => {
+      onDragStart={(e,data) => {
         selectNode(selectedNodes, itemId, selected, NodesDispatch);
       }}
       onDrag={(e, data): void => {
-        updateNodePosition(data, NodesDispatch, itemId);
+        updateNodePosition(data, NodesDispatch, itemId)
       }}
     >
       <Card text={name} color={color} selected={selected} points={points} status={status} labels={labels} />
