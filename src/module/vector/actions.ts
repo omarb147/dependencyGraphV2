@@ -6,4 +6,8 @@ export const addVector = createAction('vector/ADD_VECTOR')<{
   to: string;
 }>();
 
-export type vectorActionTypes = ActionType<typeof addVector>;
+export const deleteVector = createAction('vector/DELETE_VECTOR')<{
+  id: string;
+}>();
+
+export type vectorActionTypes = ActionType<typeof addVector> | ActionType<typeof deleteVector>;

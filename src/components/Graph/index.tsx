@@ -1,27 +1,38 @@
 import React from 'react';
-import { INodesState } from '@/type/types';
-import NodesDispatchClass from '@/module/node/dispatch';
-import NodesSelectorClass from '@/module/node/selectors';
-import Node from '@/components/Node';
+import styled from 'styled-components';
+import { v4 as uuidV4 } from 'uuid';
+import { generateNodes, generateVectors, addVector } from './graph.actionHandlers';
+import { useGraphWrap } from './graph.wrap';
 
-const generateNodes = (nodes: INodesState) => Object.entries(nodes).map(([id, node]) => {
-  const { text, color } = node;
-  return <Node key={id} id={id} text={text} color={color} />;
-});
+const GraphOuter = styled.div`
+  width: 100vw;
+  height: 100vh;
+`;
 
-const Graph: React.SFC = () => {
-  const NodesDispatch = new NodesDispatchClass();
-  const NodesSelector = new NodesSelectorClass();
+const Graph: React.FC = () => {
+  const { vector, node, enterPressed } = useGraphWrap();
 
-  const nodes = NodesSelector.useNodes();
+  /* eslint-disable */
+  enterPressed && addVector(node.selectedNodes, vector.VectorDispatch, node.NodesDispatch);
 
   return (
-    <div>
-      {generateNodes(nodes)}
-      <button type="button" onClick={() => NodesDispatch.addNode('test', 'green')}>
-        Test
-      </button>
-    </div>
+    /* eslint-disable */
+    <>
+      <div>
+        {generateNodes(node.nodes, node.selectedNodes)}
+        {generateVectors(vector.vectors)}
+        <button type="button" onClick={() => node.NodesDispatch.addNode(uuidV4(), 'test', 'green')}>
+          Test
+        </button>
+      </div>
+      <GraphOuter
+        onClick={(event) => {
+          event.stopPropagation();
+          node.NodesDispatch.deselectAllNodes();
+        }}
+      ></GraphOuter>
+      s
+    </>
   );
 };
 export default Graph;

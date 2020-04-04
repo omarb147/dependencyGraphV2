@@ -1,25 +1,30 @@
 import React from 'react';
 import styled from 'styled-components';
 
-interface ICardProps {
+interface ICardFrameProps {
   color: string;
-  text: string;
-  selected?: boolean;
+  selected: boolean;
   className?: string;
 }
 
-const CardFrame = styled.div`
-  background-color:#FFFFFF;
+interface ICardProps extends ICardFrameProps {
+  text: string;
+}
+
+const CardFrame = styled.div<ICardFrameProps>`
+  background-color: #ffffff;
+  border: ${(props) => (props.selected ? `5px solid ${props.color}` : 'none')};
   border-top: 5px solid ${(props) => props.color};
-  width:20rem;
-  box-shadow: 0px 5px 10px #C9C9C9;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0px 5px 10px #c9c9c9;
   padding: 1rem;
 `;
 
 const UserStoryWrapper = styled.div`
   color: #434343;
   font-size: 1rem;
-  display:flex;
+  display: flex;
   justify-content: space-between;
 `;
 
@@ -27,14 +32,14 @@ const Point = styled.div`
   padding: 0.25rem 0.4rem;
   font-size: 1.2rem;
   background-color: ${(props) => props.color};
-  color: #FFFFFF;
+  color: #ffffff;
   margin-right: 0.5rem;
-  opacity:0.7;
+  opacity: 0.7;
 `;
 
 const Divider = styled.hr`
   margin: 1rem 0 0.5rem;
-  border-top:1px solid #E1E1E1;
+  border-top: 1px solid #e1e1e1;
 `;
 
 const Text = styled.div`
@@ -42,27 +47,25 @@ const Text = styled.div`
 `;
 
 const LabelFrame = styled.div`
-display:flex;
-justify-content: flex-end;
-color: #A5A5A5;
-font-size:0.8rem;
+  display: flex;
+  justify-content: flex-end;
+  color: #a5a5a5;
+  font-size: 0.8rem;
 `;
 
-
-const Card: React.SFC<ICardProps> = ({ className, text, color }: ICardProps) => (
-  <CardFrame color={color} className={className}>
+const Card: React.SFC<ICardProps> = ({
+  className,
+  text,
+  color,
+  selected,
+}: ICardProps) => (
+  <CardFrame color={color} className={className} selected={selected}>
     <UserStoryWrapper>
-      <Point color={color}>
-        1
-      </Point>
-      <Text>
-        {text}
-      </Text>
+      <Point color={color}>1</Point>
+      <Text>{text}</Text>
     </UserStoryWrapper>
     <Divider />
-    <LabelFrame>
-      #LastSprint
-    </LabelFrame>
+    <LabelFrame>#LastSprint</LabelFrame>
   </CardFrame>
 );
 
