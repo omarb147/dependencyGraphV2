@@ -16,7 +16,7 @@ const Node: React.FC<INodeComponentProps> = (props: INodeComponentProps) => {
   const { NodesDispatch, selectedNodes } = useNodeWrap();
 
   useEffect(() => {
-    const component = document.querySelector(`#${itemId}`) as HTMLElement;
+    const component = document.querySelector(`#node-${itemId}`) as HTMLElement ;
     const {offsetHeight, offsetWidth} = component
     NodesDispatch.updateNodeSize(itemId,offsetHeight,offsetWidth)
   },[])
@@ -24,7 +24,7 @@ const Node: React.FC<INodeComponentProps> = (props: INodeComponentProps) => {
 
   return (
     <Rnd
-      id={itemId}
+      id={`node-${itemId}`}
       key={itemId}
       enableResizing={{
         top: false,
