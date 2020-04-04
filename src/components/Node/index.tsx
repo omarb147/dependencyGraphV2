@@ -27,6 +27,7 @@ const Node: React.FC<INodeComponentProps> = (props: INodeComponentProps) => {
 
   return (
     <Rnd
+      dragGrid={[20, 20]}
       id={`node-${itemId}`}
       key={itemId}
       enableResizing={{
