@@ -26,7 +26,7 @@ const CardFrame = styled.div<ICardFrameProps>`
 
 const UserStoryWrapper = styled.div`
   color: #434343;
-  display:flex;
+  display: flex;
   justify-content: space-between;
   align-items: flex-start;
 `;
@@ -42,7 +42,7 @@ const Point = styled.div<{ color: string }>`
 
 const Divider = styled.hr`
   margin: 0.5rem 0 0.25rem;
-  border-top:1px solid #e1e1e1;
+  border-top: 1px solid #e1e1e1;
 `;
 
 const Text = styled.div`
@@ -82,9 +82,7 @@ const Card: React.SFC<ICardProps> = ({
     <Divider />
     {labels ? (
       <>
-        <LabelFrame>
-          {labels}
-        </LabelFrame>
+        <LabelFrame>{labels}</LabelFrame>
       </>
     ) : null}
   </CardFrame>
