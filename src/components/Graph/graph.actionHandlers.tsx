@@ -14,22 +14,13 @@ interface IVectorsObject {
   [index: string]: IVector;
 }
 
-export const generateNodes = (nodes: INodesObject, selectedNodes: string[]): JSX.Element[] => Object.entries(nodes).map(([id, node]) => {
-  const {
-    name, color, size, status, labels, points,
-  } = node;
+export const generateNodes = (nodes: INodesObject, selectedNodes: string[]): JSX.Element[] => Object.entries(nodes).map(([id]) => {
   const selected = selectedNodes.includes(id);
   return (
     <Node
       key={id}
       itemId={id}
-      points={points}
-      name={name}
-      color={color}
       selected={selected}
-      size={size}
-      status={status}
-      labels={labels}
     />
   );
 });

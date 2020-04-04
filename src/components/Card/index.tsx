@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import NodesSelectorClass from '@/module/node/selectors';
 
 interface ICardFrameProps {
   color: string;
@@ -7,11 +8,10 @@ interface ICardFrameProps {
   className?: string;
 }
 
-interface ICardProps extends ICardFrameProps {
-  points: string;
-  status: string;
-  labels: string;
-  text: string;
+interface ICardProps {
+  selected: boolean;
+  itemId: string;
+  className?: string;
 }
 
 const CardFrame = styled.div<ICardFrameProps>`
@@ -59,33 +59,40 @@ const LabelFrame = styled.div`
 
 const Card: React.SFC<ICardProps> = ({
   className,
-  text,
-  color = 'purple',
-  selected,
-  labels,
-  points,
-  status,
-}: ICardProps) => (
-  <CardFrame
-    color={color}
-    className={className}
-    selected={selected}
-  >
-    <UserStoryWrapper>
-      {points ? (
-        <Point color={color}>
-          {points}
-        </Point>
+  itemId,
+  selected
+}: ICardProps) => {
+  const NodesSelector = new NodesSelectorClass();
+  const {
+    points,
+    color,
+    labels,
+    name,
+    status,
+  } = NodesSelector.getNodeById(itemId);
+
+  return (
+    <CardFrame
+      color={color}
+      className={className}
+      selected={selected}
+    >
+      <UserStoryWrapper>
+        {points ? (
+          <Point color={color}>
+            {points}
+          </Point>
+        ) : null}
+        <Text>{name}</Text>
+      </UserStoryWrapper>
+      <Divider />
+      {labels ? (
+        <>
+          <LabelFrame>{labels}</LabelFrame>
+        </>
       ) : null}
-      <Text>{text}</Text>
-    </UserStoryWrapper>
-    <Divider />
-    {labels ? (
-      <>
-        <LabelFrame>{labels}</LabelFrame>
-      </>
-    ) : null}
-  </CardFrame>
-);
+    </CardFrame>
+  );
+};
 
 export default Card;

@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react';
 import { Rnd } from 'react-rnd';
-import { INode } from '@/type/types';
 import Card from '@/components/Card';
 import { selectNode, updateNodePosition } from './nodeActionHandlers';
 import { useNodeWrap } from './node.wrap';
 
-interface INodeComponentProps extends Omit<INode, 'position'> {
+interface INodeComponentProps {
   selected: boolean;
+  itemId: string;
 }
 
 const Node: React.FC<INodeComponentProps> = (props: INodeComponentProps) => {
   const {
-    name, color, selected, size, itemId, points, status, labels
+    selected, itemId,
   } = props;
   const { NodesDispatch, selectedNodes } = useNodeWrap();
 
@@ -51,12 +51,8 @@ const Node: React.FC<INodeComponentProps> = (props: INodeComponentProps) => {
       }}
     >
       <Card
-        text={name}
-        color={color}
+        itemId={itemId}
         selected={selected}
-        points={points}
-        status={status}
-        labels={labels}
       />
     </Rnd>
   );
