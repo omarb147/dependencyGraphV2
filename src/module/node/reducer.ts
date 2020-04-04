@@ -9,6 +9,7 @@ import {
   deselectAllNodes,
   updateNodePosition,
   updateNodeSize,
+  addHeader,
 } from './actions';
 
 const initialState: INodesState = {
@@ -18,13 +19,14 @@ const initialState: INodesState = {
       color: 'red',
       name: 'first node in',
       position: { x: 0, y: 0 },
-      size:{height:0, width:0},
+      size: { height: 0, width: 0 },
       labels: '#sprintGoal',
       points: '2',
       status: 'Create Survey',
     },
   },
   selectedNodes: [],
+  headers: {},
 };
 
 export default (state: INodesState = initialState, action: nodeActionTypes): INodesState => {
@@ -44,13 +46,13 @@ export default (state: INodesState = initialState, action: nodeActionTypes): INo
             status,
             labels,
             points,
-            size:{height:0, width:0},
+            size: { height: 0, width: 0 },
             position: { x: 0, y: 0 },
           },
         },
       };
     }
-    case getType(updateNodeSize):{
+    case getType(updateNodeSize): {
       const { id, height, width } = action.payload;
       return {
         ...state,
@@ -62,6 +64,18 @@ export default (state: INodesState = initialState, action: nodeActionTypes): INo
               height,
               width,
             },
+          },
+        },
+      };
+    }
+    case getType(addHeader): {
+      const { name, color } = action.payload.header;
+      return {
+        ...state,
+        headers: {
+          [name]: {
+            color,
+            name,
           },
         },
       };

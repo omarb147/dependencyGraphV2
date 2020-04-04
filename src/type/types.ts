@@ -23,9 +23,19 @@ export interface IFullNode {
   [index: string]: INode;
 }
 
+export interface IHeader {
+  name: string;
+  color: string;
+}
+
+export interface IFullHeader {
+  [index: string]: IHeader;
+}
+
 export interface INodesState {
   selectedNodes: string[];
   nodes: IFullNode;
+  headers: IFullHeader;
 }
 
 export interface ILink {
