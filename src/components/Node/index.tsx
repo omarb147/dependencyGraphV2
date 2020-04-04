@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import { Rnd } from 'react-rnd';
-import { INode,  } from '@/type/types';
+import { INode } from '@/type/types';
 import Card from '@/components/Card';
 import { selectNode, updateNodePosition } from './nodeActionHandlers';
 import { useNodeWrap } from './node.wrap';
