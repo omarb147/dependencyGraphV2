@@ -69,7 +69,7 @@ const Card: React.SFC<ICardProps> = ({
     labels,
     name,
     status,
-  } = NodesSelector.useNodeById(itemId);
+  } = NodesSelector.useTicketById(itemId);
 
   return (
     <CardFrame

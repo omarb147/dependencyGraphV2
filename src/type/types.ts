@@ -8,7 +8,7 @@ export interface INodeSize {
   width: number;
 }
 
-export interface INode {
+export interface ITicket {
   itemId: string;
   name: string;
   status: string;
@@ -19,8 +19,8 @@ export interface INode {
   size: { height: number; width: number };
 }
 
-export interface IFullNode {
-  [index: string]: INode;
+export interface IFullTicket {
+  [index: string]: ITicket;
 }
 
 export interface IHeader {
@@ -35,7 +35,7 @@ export interface IFullHeader {
 
 export interface INodesState {
   selectedNodes: string[];
-  nodes: IFullNode;
+  tickets: IFullTicket;
   headers: IFullHeader;
 }
 

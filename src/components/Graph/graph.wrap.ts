@@ -11,7 +11,7 @@ export const useGraphWrap = () => {
   const VectorDispatch = new VectorDispatchClass();
   const VectorsSelectors = new VectorSelectorClass();
 
-  const nodes = NodesSelector.useNodes();
+  const nodes = NodesSelector.useTickets();
   const selectedNodes = NodesSelector.useSelectedNodes();
   const vectors = VectorsSelectors.useVectors();
 

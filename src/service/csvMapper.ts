@@ -1,4 +1,4 @@
-import { INode, IHeadingMap, Headings } from '@/type/types';
+import { ITicket, IHeadingMap, Headings } from '@/type/types';
 
 export const getHeadersIndex = (csv: string[]): number | undefined => {
   // Looks specifically for a row with these headers
@@ -40,7 +40,7 @@ export const formatUserStory = (userStory: string): string => {
   return updatedUserStory.slice(updatedUserStory.search(regex), updatedUserStory.length);
 };
 
-export const mapCSVtoObject = (csv: string): INode[] | undefined => {
+export const mapCSVtoObject = (csv: string): ITicket[] | undefined => {
   const csvArray = csv.split('\n');
 
   const headerRowIndex = getHeadersIndex(csvArray);
@@ -63,7 +63,7 @@ export const mapCSVtoObject = (csv: string): INode[] | undefined => {
         }
         return acc;
       }, {});
-    }) as INode[];
+    }) as ITicket[];
   }
   return undefined;
 };

@@ -1,13 +1,13 @@
 import React from 'react';
 import NodesDispatchClass from '@/module/node/dispatch';
 import VectorDispatchClass from '@/module/vector/dispatch';
-import { INode, IVector } from '@/type/types';
+import { ITicket, IVector } from '@/type/types';
 import { v4 as uuidv4 } from 'uuid';
 import Node from '@/components/Node';
 import Vector from '@/components/Vector';
 
 interface INodesObject {
-  [index: string]: INode;
+  [index: string]: ITicket;
 }
 
 interface IVectorsObject {

@@ -1,8 +1,8 @@
 import { createAction, ActionType } from 'typesafe-actions';
-import { INode, IHeader } from '@/type/types';
+import { ITicket, IHeader } from '@/type/types';
 
 export const addNode = createAction('nodes/ADD_NODE')<{
-  node: INode;
+  node: ITicket;
 }>();
 
 export const addHeader = createAction('nodes/ADD_HEADER')<{

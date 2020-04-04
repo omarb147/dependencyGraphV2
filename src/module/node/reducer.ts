@@ -13,7 +13,7 @@ import {
 } from './actions';
 
 const initialState: INodesState = {
-  nodes: {
+  tickets: {
     node123: {
       itemId: 'node123',
       color: 'red',
@@ -37,8 +37,8 @@ export default (state: INodesState = initialState, action: nodeActionTypes): INo
       } = action.payload.node;
       return {
         ...state,
-        nodes: {
-          ...state.nodes,
+        tickets: {
+          ...state.tickets,
           [itemId]: {
             itemId,
             color,
@@ -56,10 +56,10 @@ export default (state: INodesState = initialState, action: nodeActionTypes): INo
       const { id, height, width } = action.payload;
       return {
         ...state,
-        nodes: {
-          ...state.nodes,
+        tickets: {
+          ...state.tickets,
           [id]: {
-            ...state.nodes[id],
+            ...state.tickets[id],
             size: {
               height,
               width,
@@ -85,10 +85,10 @@ export default (state: INodesState = initialState, action: nodeActionTypes): INo
       const { id, x, y } = action.payload;
       return {
         ...state,
-        nodes: {
-          ...state.nodes,
+        tickets: {
+          ...state.tickets,
           [id]: {
-            ...state.nodes[id],
+            ...state.tickets[id],
             position: {
               x,
               y,
