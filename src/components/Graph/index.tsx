@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { v4 as uuidV4 } from 'uuid';
-import { generateNodes, generateVectors, addVector } from './graph.actionHandlers';
 import { useGraphWrap } from './graph.wrap';
+import { generateNodes, generateVectors, addVector } from './graph.actionHandlers';
 
 const GraphOuter = styled.div`
   width: 100vw;
@@ -21,9 +20,6 @@ const Graph: React.FC = () => {
       <div>
         {generateNodes(node.nodes, node.selectedNodes)}
         {generateVectors(vector.vectors)}
-        <button type="button" onClick={() => node.NodesDispatch.addNode(uuidV4(), 'test', 'green')}>
-          Test
-        </button>
       </div>
       <GraphOuter
         onClick={(event) => {

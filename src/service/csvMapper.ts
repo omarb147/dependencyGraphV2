@@ -1,42 +1,69 @@
-import { IGenericObject } from '@/type/types';
+import { INode, IHeadingMap, Headings } from '@/type/types';
 
-export const getIndexByString = (array: string[], text: string): number | undefined => {
-  const row = array.find((string) => string.includes(text));
-  return row ? array.indexOf(row) : undefined;
-};
+export const getHeadersIndex = (csv: string[]): number | undefined => {
+  // Looks specifically for a row with these headers
+  const headers = ['Name', 'Status', 'Labels', 'Points', 'Item ID'];
+  let headerIndex: number | null = null;
 
-export const getBacklogSection = (csv: string[]): string[] | undefined => {
-  const backlogRowIndex = getIndexByString(csv, 'Backlog');
-  const todayRowIndex = getIndexByString(csv, 'Today');
-  return backlogRowIndex !== undefined && todayRowIndex !== undefined ? csv.slice(backlogRowIndex, todayRowIndex) : undefined;
-};
-
-export const mapCSVtoObject = (csv: string): string | {[index: string]: IGenericObject } => {
-  const csvAsArray = csv.split('\n');
-
-  const backlogSection = getBacklogSection(csvAsArray);
-  if (backlogSection) {
-    const [title, headers, ...tickets] = backlogSection;
-    const fields = headers.split(',').map((header) => header.trim());
-
-    // Regex to only find commas outside of double quotes
-    const regex = /(?!\B"[^"]*),(?![^"]*"\B)/g;
-
-    return tickets.reduce((row, ticket) => {
-      const ticketFields = ticket.split(regex);
-      const itemID = ticketFields[fields.indexOf('Item ID')];
-      if (itemID) {
-        return {
-          ...row,
-          [itemID]: fields.reduce((acc, field, index) => ({
-            ...acc,
-            [field]: ticketFields[index],
-          }), {}),
-        };
-      }
-      return { ...row };
-    }, {});
+  // Look for the row with the header
+  for (let i = 0; i < csv.length; i += 1) {
+    const row = csv[i];
+    if (headers.every((header) => row.includes(header))) {
+      headerIndex = i;
+      break;
+    }
   }
 
-  return {};
+  return headerIndex ?? undefined;
+};
+
+const headingMap: IHeadingMap = {
+  Name: 'name',
+  Status: 'status',
+  Labels: 'labels',
+  Points: 'points',
+  Person: 'person',
+  'Item ID': 'itemId',
+  'Priotiry Order': 'priorityOrder',
+};
+
+export const formatUserStory = (userStory: string): string => {
+  // Match first letter or bracket
+  const regex = /(\[|[a-zA-Z])/;
+
+  const updatedUserStory = userStory.replace(/""/g, '"');
+
+  if (updatedUserStory[updatedUserStory.length - 1] === '"') {
+    return updatedUserStory.slice(updatedUserStory.search(regex), updatedUserStory.length - 1);
+  }
+
+  return updatedUserStory.slice(updatedUserStory.search(regex), updatedUserStory.length);
+};
+
+export const mapCSVtoObject = (csv: string): INode[] | undefined => {
+  const csvArray = csv.split('\n');
+
+  const headerRowIndex = getHeadersIndex(csvArray);
+
+  // matches commas outside of double quotes
+  const regex = /,(?=(?:[^"]*"[^"]*")*[^"]*$)/gm;
+
+  if (headerRowIndex) {
+    const tickets = csvArray.slice(headerRowIndex + 1, csvArray.length - 1);
+    const headers = csvArray[headerRowIndex].split(regex).map((header) => header.trim()) as Headings[];
+
+    return tickets.map((ticket) => {
+      const ticketInfo = ticket.split(regex);
+      return ticketInfo.reduce((acc, val, index) => {
+        if (headingMap[headers[index]]) {
+          return {
+            ...acc,
+            [headingMap[headers[index]]]: headers[index] === 'Name' ? formatUserStory(val.trim()) : val,
+          };
+        }
+        return acc;
+      }, {});
+    }) as INode[];
+  }
+  return undefined;
 };

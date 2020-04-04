@@ -13,11 +13,14 @@ import {
 const initialState: INodesState = {
   nodes: {
     node123: {
-      id: 'node123',
+      itemId: 'node123',
       color: 'red',
-      text: 'first node in',
+      name: 'first node in',
       position: { x: 0, y: 0 },
       size: { height: 120, width: 320 },
+      labels: '#sprintGoal',
+      points: '2',
+      status: 'Create Survey',
     },
   },
   selectedNodes: [],
@@ -26,15 +29,20 @@ const initialState: INodesState = {
 export default (state: INodesState = initialState, action: nodeActionTypes): INodesState => {
   switch (action.type) {
     case getType(addNode): {
-      const { id } = action.payload;
+      const {
+        itemId, color, name, status, labels, points,
+      } = action.payload.node;
       return {
         ...state,
         nodes: {
           ...state.nodes,
-          [id]: {
-            id,
-            color: action.payload.color,
-            text: action.payload.text,
+          [itemId]: {
+            itemId,
+            color,
+            name,
+            status,
+            labels,
+            points,
             position: { x: 0, y: 0 },
             size: { height: 120, width: 320 },
           },

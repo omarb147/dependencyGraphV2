@@ -9,16 +9,30 @@ export interface INodeSize {
 }
 
 export interface INode {
-  id: string;
+  itemId: string;
+  name: string;
+  status: string;
+  labels: string;
+  points: string;
   color: string;
-  text: string;
   position: INodeCoordinates;
   size: { height: number; width: number };
 }
 
+export interface IFullNode {
+  [index: string]: INode;
+}
+
 export interface INodesState {
-  nodes: { [key: string]: INode };
   selectedNodes: string[];
+  nodes: IFullNode;
+}
+
+export interface ILink {
+  id: string;
+  from: string;
+  to: string;
+  orientation: string;
 }
 
 export interface IGraphState {
@@ -39,3 +53,15 @@ export interface IVectorState {
 export interface IGenericObject {
   [index: string]: string;
 }
+
+export interface IHeadingMap {
+  Name: 'name';
+  Status: 'status';
+  Labels: 'labels';
+  Points: 'points';
+  Person: 'person';
+  'Item ID': 'itemId';
+  'Priotiry Order': 'priorityOrder';
+}
+
+export type Headings = keyof IHeadingMap;
