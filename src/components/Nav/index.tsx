@@ -23,7 +23,7 @@ export default () => {
     <NavBar>
       <button
         type="button"
-        onClick={() => NodesDispatch.addNode({
+        onClick={() => NodesDispatch.addTicket({
           itemId: uuidV4(),
           name: 'test',
           color: 'green',

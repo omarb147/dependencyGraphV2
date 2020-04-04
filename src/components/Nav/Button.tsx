@@ -30,7 +30,7 @@ const handleUploadOnChange = (dispatch: INodesDispatch) => (): void => {
             if (tickets) {
               Object.values(tickets).forEach((ticket) => {
                 console.log(ticket)
-                dispatch.addNode(ticket);
+                dispatch.addTicket(ticket);
               });
             } else {
               throw new Error('Unable to find row of headers in CSV.');

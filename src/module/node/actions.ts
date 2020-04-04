@@ -1,15 +1,13 @@
 import { createAction, ActionType } from 'typesafe-actions';
 import { ITicket, IHeader } from '@/type/types';
 
-export const addNode = createAction('nodes/ADD_NODE')<{
-  node: ITicket;
+export const addTicket = createAction('nodes/ADD_TICKET')<{
+  ticket: ITicket;
 }>();
 
 export const addHeader = createAction('nodes/ADD_HEADER')<{
   header: IHeader;
 }>();
-
-export type AddNode = ActionType<typeof addNode>;
 
 export const updateNodePosition = createAction('nodes/UPDATE_NODE_POSITION')<{
   id: string;
@@ -33,7 +31,7 @@ export const deselectNode = createAction('nodes/DESELECT_NODE')<{
 export const deselectAllNodes = createAction('nodes/DESELECT_ALL_NODES')<{}>();
 
 export type nodeActionTypes =
-  | ActionType<typeof addNode>
+  | ActionType<typeof addTicket>
   | ActionType<typeof addHeader>
   | ActionType<typeof updateNodePosition>
   | ActionType<typeof updateNodeSize>

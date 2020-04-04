@@ -1,11 +1,11 @@
 import DispatchClass from '@/module/util/rootDispatch';
 import { ITicket, IHeader } from '@/type/types';
 import {
-  addNode, selectNode, deselectNode, deselectAllNodes, updateNodePosition, updateNodeSize, addHeader,
+  addTicket, selectNode, deselectNode, deselectAllNodes, updateNodePosition, updateNodeSize, addHeader,
 } from './actions';
 
 export default class NodesDispatch extends DispatchClass {
-  addNode = (node: ITicket) => this.dispatch(addNode({ node }));
+  addTicket = (ticket: ITicket) => this.dispatch(addTicket({ ticket }));
 
   addHeader = (header: IHeader) => this.dispatch(addHeader({ header }));
 
@@ -21,5 +21,5 @@ export default class NodesDispatch extends DispatchClass {
 }
 
 export interface INodesDispatch {
-  addNode(node: ITicket): void;
+  addTicket(node: ITicket): void;
 }

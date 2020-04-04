@@ -2,7 +2,7 @@ import { getType } from 'typesafe-actions';
 import { INodesState } from '@/type/types';
 
 import {
-  addNode,
+  addTicket,
   nodeActionTypes,
   selectNode,
   deselectNode,
@@ -31,10 +31,10 @@ const initialState: INodesState = {
 
 export default (state: INodesState = initialState, action: nodeActionTypes): INodesState => {
   switch (action.type) {
-    case getType(addNode): {
+    case getType(addTicket): {
       const {
         itemId, color, name, status, labels, points,
-      } = action.payload.node;
+      } = action.payload.ticket;
       return {
         ...state,
         tickets: {
