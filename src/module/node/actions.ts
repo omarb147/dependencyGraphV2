@@ -13,6 +13,11 @@ export const updateNodePosition = createAction('nodes/UPDATE_NODE_POSITION')<{
   y: number;
 }>();
 
+export const updateNodeSize = createAction('nodes/UPDATE_SIZE')<{
+  id:string;
+  height:number;
+  width:number;
+}>()
 export const selectNode = createAction('nodes/SELECT_NODE')<{
   id: string;
 }>();
@@ -26,6 +31,7 @@ export const deselectAllNodes = createAction('nodes/DESELECT_ALL_NODES')<{}>();
 export type nodeActionTypes =
   | ActionType<typeof addNode>
   | ActionType<typeof updateNodePosition>
+  | ActionType<typeof updateNodeSize>
   | ActionType<typeof selectNode>
   | ActionType<typeof deselectNode>
   | ActionType<typeof deselectAllNodes>;
