@@ -2,19 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 import NodesSelectorClass from '@/module/node/selectors';
 
-interface ICardFrameProps {
+interface ITicketFrameProps {
   color: string;
   selected: boolean;
   className?: string;
 }
 
-interface ICardProps {
+interface ITicketProps {
   selected: boolean;
   itemId: string;
   className?: string;
 }
 
-const CardFrame = styled.div<ICardFrameProps>`
+const TicketFrame = styled.div<ITicketFrameProps>`
   background-color: #ffffff;
   border: ${(props): string => (props.selected ? `5px solid ${props.color}` : 'none')};
   border-top: 5px solid ${(props): string => props.color};
@@ -57,11 +57,11 @@ const LabelFrame = styled.div`
   font-size: 0.7rem;
 `;
 
-const Card: React.SFC<ICardProps> = ({
+const Ticket: React.SFC<ITicketProps> = ({
   className,
   itemId,
   selected
-}: ICardProps) => {
+}: ITicketProps) => {
   const NodesSelector = new NodesSelectorClass();
   const {
     points,
@@ -72,7 +72,7 @@ const Card: React.SFC<ICardProps> = ({
   } = NodesSelector.useTicketById(itemId);
 
   return (
-    <CardFrame
+    <TicketFrame
       color={color}
       className={className}
       selected={selected}
@@ -91,8 +91,8 @@ const Card: React.SFC<ICardProps> = ({
           <LabelFrame>{labels}</LabelFrame>
         </>
       ) : null}
-    </CardFrame>
+    </TicketFrame>
   );
 };
 
-export default Card;
+export default Ticket;

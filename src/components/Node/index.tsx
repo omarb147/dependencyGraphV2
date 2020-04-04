@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Rnd } from 'react-rnd';
-import Card from '@/components/Card';
+import Ticket from '@/components/Ticket';
 import { selectNode, updateNodePosition } from './nodeActionHandlers';
 import { useNodeWrap } from './node.wrap';
 
@@ -50,7 +50,7 @@ const Node: React.FC<INodeComponentProps> = (props: INodeComponentProps) => {
         updateNodePosition(data, NodesDispatch, itemId)
       }}
     >
-      <Card
+      <Ticket
         itemId={itemId}
         selected={selected}
       />
