@@ -1,5 +1,5 @@
 import { createAction, ActionType } from 'typesafe-actions';
-import { ITicket, IHeader, NodeTypes } from '@/type/types';
+import { ITicket, IHeader } from '@/type/types';
 
 export const addTicket = createAction('nodes/ADD_TICKET')<{
   ticket: ITicket;

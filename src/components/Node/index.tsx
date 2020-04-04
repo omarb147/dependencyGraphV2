@@ -27,6 +27,7 @@ const Node: React.FC<INodeComponentProps> = (props: INodeComponentProps) => {
 
   return (
     <Rnd
+      style={{ zIndex: 10 }}
       bounds=".boundary"
       id={`node-${itemId}`}
       key={itemId}
