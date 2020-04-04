@@ -15,3 +15,7 @@ export default class NodesDispatch extends DispatchClass {
 
   deselectAllNodes = () => this.dispatch(deselectAllNodes({}));
 }
+
+export interface INodesDispatch {
+  addNode(node: INode): void;
+}
