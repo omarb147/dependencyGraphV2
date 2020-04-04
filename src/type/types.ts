@@ -76,3 +76,5 @@ export interface IHeadingMap {
 }
 
 export type Headings = keyof IHeadingMap;
+
+export type NodeTypes = 'ticket' | 'header';

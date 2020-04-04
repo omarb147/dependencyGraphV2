@@ -53,7 +53,9 @@ export default (state: INodesState = initialState, action: nodeActionTypes): INo
       };
     }
     case getType(updateNodeSize): {
-      const { id, height, width } = action.payload;
+      const {
+        id, height, width,
+      } = action.payload;
       return {
         ...state,
         tickets: {
@@ -73,6 +75,7 @@ export default (state: INodesState = initialState, action: nodeActionTypes): INo
       return {
         ...state,
         headers: {
+          ...state.headers,
           [id]: {
             color,
             name,

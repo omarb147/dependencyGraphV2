@@ -1,25 +1,28 @@
 import React, { useEffect } from 'react';
 import { Rnd } from 'react-rnd';
-import Ticket from '@/components/Ticket';
-import { selectNode, updateNodePosition } from './nodeActionHandlers';
+import { Ticket, Header } from '@/components';
+import { NodeTypes } from '@/type/types';
+import { selectNode, updateNodePosition, updateNodeSize } from './nodeActionHandlers';
 import { useNodeWrap } from './node.wrap';
 
 interface INodeComponentProps {
   selected: boolean;
   itemId: string;
+  type: NodeTypes;
 }
 
 const Node: React.FC<INodeComponentProps> = (props: INodeComponentProps) => {
   const {
-    selected, itemId,
+    selected, itemId, type,
   } = props;
   const { NodesDispatch, selectedTickets } = useNodeWrap();
 
   useEffect(() => {
     const component = document.querySelector(`#node-${itemId}`) as HTMLElement;
     const { offsetHeight, offsetWidth } = component;
-    NodesDispatch.updateNodeSize(itemId, offsetHeight, offsetWidth);
-  }, [])
+
+    updateNodeSize(itemId, offsetHeight, offsetWidth, NodesDispatch, type);
+  }, []);
 
 
   return (
@@ -40,20 +43,26 @@ const Node: React.FC<INodeComponentProps> = (props: INodeComponentProps) => {
       default={{
         x: 0,
         y: 0,
-        width: "auto",
-        height: "auto",
+        width: 'auto',
+        height: 'auto',
       }}
       onDragStart={(e, data) => {
-        selectNode(selectedTickets, itemId, selected, NodesDispatch);
+        selectNode(selectedTickets, itemId, selected, NodesDispatch, type);
       }}
       onDrag={(e, data): void => {
-        updateNodePosition(data, NodesDispatch, itemId)
+        updateNodePosition(data, NodesDispatch, itemId, type)
       }}
     >
-      <Ticket
-        itemId={itemId}
-        selected={selected}
-      />
+      {
+        type === 'ticket'
+          ? (
+            <Ticket
+              itemId={itemId}
+              selected={selected}
+            />
+          )
+          : <Header />
+      }
     </Rnd>
   );
 };

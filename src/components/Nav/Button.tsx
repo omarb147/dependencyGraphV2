@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { mapCSVtoObject } from '@/service/csvMapper';
-import NodesDispatchClass, { INodesDispatch } from '@/module/node/dispatch';
+import NodesDispatchClass from '@/module/node/dispatch';
 
 const StyledButton = styled.button<{ onClick: () => void }>``;
 
@@ -16,7 +16,7 @@ const handleOnClick = (): void => {
   }
 };
 
-const handleUploadOnChange = (dispatch: INodesDispatch) => (): void => {
+const handleUploadOnChange = (dispatch: NodesDispatchClass) => (): void => {
   try {
     const uploadInput = document.getElementById('csvUpload') as HTMLInputElement;
     if (uploadInput && uploadInput.files) {
