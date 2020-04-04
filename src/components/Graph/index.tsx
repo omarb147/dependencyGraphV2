@@ -4,8 +4,13 @@ import { useGraphWrap } from './graph.wrap';
 import { generateNodes, generateVectors, addVector } from './graph.actionHandlers';
 
 const GraphOuter = styled.div`
-  width: 100vw;
-  height: 100vh;
+  height: 100%;
+  width: 100%;
+`;
+
+const Boundary = styled.div`
+  height: 100%;
+  width: 100%;
 `;
 
 const Graph: React.FC = () => {
@@ -16,7 +21,7 @@ const Graph: React.FC = () => {
 
   return (
     /* eslint-disable */
-    <>
+    <Boundary className='boundary'>
       <div>
         {generateNodes(node.nodes, node.selectedTickets)}
         {generateVectors(vector.vectors)}
@@ -27,8 +32,7 @@ const Graph: React.FC = () => {
           node.NodesDispatch.deselectAllNodes();
         }}
       ></GraphOuter>
-      s
-    </>
+    </Boundary>
   );
 };
 export default Graph;

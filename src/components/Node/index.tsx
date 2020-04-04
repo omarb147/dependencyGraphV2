@@ -27,6 +27,7 @@ const Node: React.FC<INodeComponentProps> = (props: INodeComponentProps) => {
 
   return (
     <Rnd
+      bounds=".boundary"
       id={`node-${itemId}`}
       key={itemId}
       enableResizing={{
@@ -46,7 +47,7 @@ const Node: React.FC<INodeComponentProps> = (props: INodeComponentProps) => {
         width: 'auto',
         height: 'auto',
       }}
-      onDragStart={(e, data) => {
+      onDragStart={() => {
         selectNode(selectedTickets, itemId, selected, NodesDispatch, type);
       }}
       onDrag={(e, data): void => {
