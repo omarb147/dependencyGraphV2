@@ -66,28 +66,28 @@ const Card: React.SFC<ICardProps> = ({
   points,
   status,
 }: ICardProps) => (
-    <CardFrame
-      color={color}
-      className={className}
-      selected={selected}
-    >
-      <UserStoryWrapper>
-        {points ? (
-          <Point color={color}>
-            {points}
-          </Point>
-        ) : null}
-        <Text>{text}</Text>
-      </UserStoryWrapper>
-      {labels ? (
-        <>
-          <Divider />
-          <LabelFrame>
-            {labels}
-          </LabelFrame>
-        </>
+  <CardFrame
+    color={color}
+    className={className}
+    selected={selected}
+  >
+    <UserStoryWrapper>
+      {points ? (
+        <Point color={color}>
+          {points}
+        </Point>
       ) : null}
-    </CardFrame>
-  );
+      <Text>{text}</Text>
+    </UserStoryWrapper>
+    <Divider />
+    {labels ? (
+      <>
+        <LabelFrame>
+          {labels}
+        </LabelFrame>
+      </>
+    ) : null}
+  </CardFrame>
+);
 
 export default Card;
