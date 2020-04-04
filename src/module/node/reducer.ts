@@ -69,13 +69,14 @@ export default (state: INodesState = initialState, action: nodeActionTypes): INo
       };
     }
     case getType(addHeader): {
-      const { name, color } = action.payload.header;
+      const { name, color, id } = action.payload.header;
       return {
         ...state,
         headers: {
-          [name]: {
+          [id]: {
             color,
             name,
+            id,
           },
         },
       };

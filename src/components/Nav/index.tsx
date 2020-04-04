@@ -34,7 +34,13 @@ export default () => {
           size: { height: 120, width: 320 },
         })}
       >
-        Test
+        Test Node
+      </button>
+      <button
+        type="button"
+        onClick={() => NodesDispatch.addHeader({ color: 'red', name: 'Header', id: 'header' })}
+      >
+        Test Header
       </button>
       <Button />
     </NavBar>

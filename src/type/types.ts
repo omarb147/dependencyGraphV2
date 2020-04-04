@@ -26,6 +26,7 @@ export interface IFullNode {
 export interface IHeader {
   name: string;
   color: string;
+  id: string;
 }
 
 export interface IFullHeader {

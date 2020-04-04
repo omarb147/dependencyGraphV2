@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { Rnd } from 'react-rnd';
 import { INode } from '@/type/types';
 import Card from '@/components/Card';
@@ -16,10 +16,10 @@ const Node: React.FC<INodeComponentProps> = (props: INodeComponentProps) => {
   const { NodesDispatch, selectedNodes } = useNodeWrap();
 
   useEffect(() => {
-    const component = document.querySelector(`#node-${itemId}`) as HTMLElement ;
-    const {offsetHeight, offsetWidth} = component
-    NodesDispatch.updateNodeSize(itemId,offsetHeight,offsetWidth)
-  },[])
+    const component = document.querySelector(`#node-${itemId}`) as HTMLElement;
+    const { offsetHeight, offsetWidth } = component;
+    NodesDispatch.updateNodeSize(itemId, offsetHeight, offsetWidth);
+  }, [])
 
 
   return (
@@ -40,17 +40,24 @@ const Node: React.FC<INodeComponentProps> = (props: INodeComponentProps) => {
       default={{
         x: 0,
         y: 0,
-        width:"auto",
-        height:"auto",
+        width: "auto",
+        height: "auto",
       }}
-      onDragStart={(e,data) => {
+      onDragStart={(e, data) => {
         selectNode(selectedNodes, itemId, selected, NodesDispatch);
       }}
       onDrag={(e, data): void => {
         updateNodePosition(data, NodesDispatch, itemId)
       }}
     >
-      <Card text={name} color={color} selected={selected} points={points} status={status} labels={labels} />
+      <Card
+        text={name}
+        color={color}
+        selected={selected}
+        points={points}
+        status={status}
+        labels={labels}
+      />
     </Rnd>
   );
 };
