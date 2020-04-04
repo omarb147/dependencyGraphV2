@@ -10,7 +10,7 @@ export interface INodeSize {
 
 export interface INode {
   itemId: string;
-  text: string;
+  name: string;
   status: string;
   labels: string;
   points: string;

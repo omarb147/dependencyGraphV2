@@ -29,6 +29,7 @@ const handleUploadOnChange = (dispatch: INodesDispatch) => (): void => {
             const tickets = mapCSVtoObject(content);
             if (tickets) {
               Object.values(tickets).forEach((ticket) => {
+                console.log(ticket)
                 dispatch.addNode(ticket);
               });
             } else {

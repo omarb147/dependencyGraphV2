@@ -2,10 +2,11 @@
 
 exports[`<Card/> should render a card with color and text 1`] = `
 .c0 {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
+  border: none;
   border-top: 5px solid yellow;
-  width: 20rem;
-  box-shadow: 0px 5px 10px #C9C9C9;
+  width: 100%;
+  box-shadow: 0px 5px 10px #c9c9c9;
   padding: 0.75rem;
 }
 
@@ -29,14 +30,14 @@ exports[`<Card/> should render a card with color and text 1`] = `
   padding: 0.25rem 0.4rem;
   font-size: 0.8rem;
   background-color: yellow;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-right: 0.5rem;
   opacity: 0.7;
 }
 
 .c4 {
   margin: 0.5rem 0 0.25rem;
-  border-top: 1px solid #E1E1E1;
+  border-top: 1px solid #e1e1e1;
 }
 
 .c3 {
@@ -56,7 +57,7 @@ exports[`<Card/> should render a card with color and text 1`] = `
   -webkit-justify-content: flex-end;
   -ms-flex-pack: end;
   justify-content: flex-end;
-  color: #A5A5A5;
+  color: #a5a5a5;
   font-size: 0.7rem;
 }
 

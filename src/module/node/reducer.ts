@@ -15,7 +15,7 @@ const initialState: INodesState = {
     node123: {
       itemId: 'node123',
       color: 'red',
-      text: 'first node in',
+      name: 'first node in',
       position: { x: 0, y: 0 },
       size: { height: 120, width: 320 },
       labels: '#sprintGoal',
@@ -30,7 +30,7 @@ export default (state: INodesState = initialState, action: nodeActionTypes): INo
   switch (action.type) {
     case getType(addNode): {
       const {
-        itemId, color, text, status, labels, points,
+        itemId, color, name, status, labels, points,
       } = action.payload.node;
       return {
         ...state,
@@ -39,7 +39,7 @@ export default (state: INodesState = initialState, action: nodeActionTypes): INo
           [itemId]: {
             itemId,
             color,
-            text,
+            name,
             status,
             labels,
             points,

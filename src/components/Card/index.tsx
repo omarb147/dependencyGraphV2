@@ -19,6 +19,7 @@ const CardFrame = styled.div<ICardFrameProps>`
   border: ${(props): string => (props.selected ? `5px solid ${props.color}` : 'none')};
   border-top: 5px solid ${(props): string => props.color};
   width: 100%;
+  height:100%;
   box-shadow: 0px 5px 10px #c9c9c9;
   padding: 0.75rem;
 `;

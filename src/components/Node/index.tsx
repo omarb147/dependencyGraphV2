@@ -11,7 +11,7 @@ interface INodeComponentProps extends Omit<INode, 'position'> {
 
 const Node: React.FC<INodeComponentProps> = (props: INodeComponentProps) => {
   const {
-    text, color, selected, size, itemId, points, status, labels
+    name, color, selected, size, itemId, points, status, labels
   } = props;
   const { NodesDispatch, selectedNodes } = useNodeWrap();
   return (
@@ -41,7 +41,7 @@ const Node: React.FC<INodeComponentProps> = (props: INodeComponentProps) => {
         updateNodePosition(data, NodesDispatch, itemId);
       }}
     >
-      <Card text={text} color={color} selected={selected} points={points} status={status} labels={labels} />
+      <Card text={name} color={color} selected={selected} points={points} status={status} labels={labels} />
     </Rnd>
   );
 };

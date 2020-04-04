@@ -25,7 +25,7 @@ export default () => {
         type="button"
         onClick={() => NodesDispatch.addNode({
           itemId: uuidV4(),
-          text: 'test',
+          name: 'test',
           color: 'green',
           status: '',
           labels: 'template',

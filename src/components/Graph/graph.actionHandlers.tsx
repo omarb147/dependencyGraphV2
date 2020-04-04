@@ -16,7 +16,7 @@ interface IVectorsObject {
 
 export const generateNodes = (nodes: INodesObject, selectedNodes: string[]): JSX.Element[] => Object.entries(nodes).map(([id, node]) => {
   const {
-    text, color, size, status, labels, points,
+    name, color, size, status, labels, points,
   } = node;
   const selected = selectedNodes.includes(id);
   return (
@@ -24,7 +24,7 @@ export const generateNodes = (nodes: INodesObject, selectedNodes: string[]): JSX
       key={id}
       itemId={id}
       points={points}
-      text={text}
+      name={name}
       color={color}
       selected={selected}
       size={size}
