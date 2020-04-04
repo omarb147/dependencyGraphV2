@@ -36,7 +36,7 @@ export const generateNodes = (nodes: INodesObject, selectedNodes: string[]): JSX
 
 export const generateVectors = (vectors: IVectorsObject): JSX.Element[] => Object.entries(vectors).map(([id, vector]) => {
   const { toNodeId, fromNodeId } = vector;
-  return <Vector fromNodeId={fromNodeId} toNodeId={toNodeId} id={id} />;
+  return <Vector key={id} fromNodeId={fromNodeId} toNodeId={toNodeId} id={id} />;
 });
 
 export const addVector = (
