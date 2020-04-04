@@ -53,3 +53,15 @@ export interface IVectorState {
 export interface IGenericObject {
   [index: string]: string;
 }
+
+export interface IHeadingMap {
+  Name: 'name';
+  Status: 'status';
+  Labels: 'labels';
+  Points: 'points';
+  Person: 'person';
+  'Item ID': 'itemId';
+  'Priotiry Order': 'priorityOrder';
+}
+
+export type Headings = keyof IHeadingMap;
