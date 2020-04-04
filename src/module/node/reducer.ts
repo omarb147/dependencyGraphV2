@@ -25,7 +25,7 @@ const initialState: INodesState = {
       status: 'Create Survey',
     },
   },
-  selectedNodes: [],
+  selectedTickets: [],
   headers: {},
 };
 
@@ -100,22 +100,22 @@ export default (state: INodesState = initialState, action: nodeActionTypes): INo
     case getType(selectNode):
       return {
         ...state,
-        selectedNodes: [...state.selectedNodes, action.payload.id],
+        selectedTickets: [...state.selectedTickets, action.payload.id],
       };
     case getType(deselectNode): {
-      const index = state.selectedNodes.findIndex((nodeID) => nodeID === action.payload.id);
+      const index = state.selectedTickets.findIndex((nodeID) => nodeID === action.payload.id);
       return index !== -1
         ? {
           ...state,
-          selectedNodes: [
-            ...state.selectedNodes.slice(0, index),
-            ...state.selectedNodes.slice(index + 1),
+          selectedTickets: [
+            ...state.selectedTickets.slice(0, index),
+            ...state.selectedTickets.slice(index + 1),
           ],
         }
         : state;
     }
     case getType(deselectAllNodes):
-      return { ...state, selectedNodes: [] };
+      return { ...state, selectedTickets: [] };
     default: {
       return state;
     }

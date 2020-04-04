@@ -1,21 +1,17 @@
 import React from 'react';
 import NodesDispatchClass from '@/module/node/dispatch';
 import VectorDispatchClass from '@/module/vector/dispatch';
-import { ITicket, IVector } from '@/type/types';
+import { IFullTicket, IVector } from '@/type/types';
 import { v4 as uuidv4 } from 'uuid';
 import Node from '@/components/Node';
 import Vector from '@/components/Vector';
-
-interface INodesObject {
-  [index: string]: ITicket;
-}
 
 interface IVectorsObject {
   [index: string]: IVector;
 }
 
-export const generateNodes = (nodes: INodesObject, selectedNodes: string[]): JSX.Element[] => Object.entries(nodes).map(([id]) => {
-  const selected = selectedNodes.includes(id);
+export const generateNodes = (tickets: IFullTicket, selectedTickets: string[]): JSX.Element[] => Object.entries(tickets).map(([id]) => {
+  const selected = selectedTickets.includes(id);
   return (
     <Node
       key={id}
@@ -31,12 +27,12 @@ export const generateVectors = (vectors: IVectorsObject): JSX.Element[] => Objec
 });
 
 export const addVector = (
-  selectedNodes: string[],
+  selectedTickets: string[],
   VectorDispatch: VectorDispatchClass,
   NodesDispatch: NodesDispatchClass,
 ): void => {
-  if (selectedNodes.length === 2) {
-    const [to, from] = selectedNodes;
+  if (selectedTickets.length === 2) {
+    const [to, from] = selectedTickets;
     VectorDispatch.addVector(to, from, uuidv4());
     NodesDispatch.deselectAllNodes();
   }

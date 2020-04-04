@@ -12,13 +12,13 @@ const Graph: React.FC = () => {
   const { vector, node, enterPressed } = useGraphWrap();
 
   /* eslint-disable */
-  enterPressed && addVector(node.selectedNodes, vector.VectorDispatch, node.NodesDispatch);
+  enterPressed && addVector(node.selectedTickets, vector.VectorDispatch, node.NodesDispatch);
 
   return (
     /* eslint-disable */
     <>
       <div>
-        {generateNodes(node.nodes, node.selectedNodes)}
+        {generateNodes(node.nodes, node.selectedTickets)}
         {generateVectors(vector.vectors)}
       </div>
       <GraphOuter

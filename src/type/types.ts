@@ -34,7 +34,7 @@ export interface IFullHeader {
 }
 
 export interface INodesState {
-  selectedNodes: string[];
+  selectedTickets: string[];
   tickets: IFullTicket;
   headers: IFullHeader;
 }

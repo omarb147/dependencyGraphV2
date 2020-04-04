@@ -2,7 +2,7 @@ import NodesDispatchClass from '@/module/node/dispatch';
 import { DraggableData } from 'react-rnd';
 
 export const selectNode = (
-  selectedNodes: string[],
+  selectedTickets: string[],
   id: string,
   selected: boolean,
   NodesDispatch: NodesDispatchClass,
@@ -11,7 +11,7 @@ export const selectNode = (
   if (selected) {
     NodesDispatch.deselectNode(id);
   } else {
-    if (selectedNodes.length >= 2) NodesDispatch.deselectAllNodes();
+    if (selectedTickets.length >= 2) NodesDispatch.deselectAllNodes();
     NodesDispatch.selectNode(id);
   }
 };

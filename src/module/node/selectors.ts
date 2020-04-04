@@ -17,5 +17,5 @@ export default class NodeSelector extends SelectorClass {
     return { position, size };
   });
 
-  useSelectedNodes = (): string[] => this.useNodeState().selectedNodes;
+  useSelectedTickets = (): string[] => this.useNodeState().selectedTickets;
 }

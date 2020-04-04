@@ -4,7 +4,7 @@ import NodesSelectorClass from '@/module/node/selectors';
 export const useNodeWrap = () => {
   const NodesDispatch = new NodesDispatchClass();
   const NodesSelector = new NodesSelectorClass();
-  const selectedNodes = NodesSelector.useSelectedNodes();
+  const selectedTickets = NodesSelector.useSelectedTickets();
 
-  return { selectedNodes, NodesDispatch };
+  return { selectedTickets, NodesDispatch };
 };

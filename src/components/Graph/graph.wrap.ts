@@ -12,11 +12,11 @@ export const useGraphWrap = () => {
   const VectorsSelectors = new VectorSelectorClass();
 
   const nodes = NodesSelector.useTickets();
-  const selectedNodes = NodesSelector.useSelectedNodes();
+  const selectedTickets = NodesSelector.useSelectedTickets();
   const vectors = VectorsSelectors.useVectors();
 
   // Set up KeyDown Handler on Enter Key
   const enterPressed = useKeyPress('Enter');
 
-  return { vector:{ vectors, VectorDispatch }, node:{nodes, selectedNodes, NodesDispatch}, enterPressed };
-}
+  return { vector: { vectors, VectorDispatch }, node: { nodes, selectedTickets, NodesDispatch }, enterPressed };
+};

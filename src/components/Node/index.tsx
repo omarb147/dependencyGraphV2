@@ -13,7 +13,7 @@ const Node: React.FC<INodeComponentProps> = (props: INodeComponentProps) => {
   const {
     selected, itemId,
   } = props;
-  const { NodesDispatch, selectedNodes } = useNodeWrap();
+  const { NodesDispatch, selectedTickets } = useNodeWrap();
 
   useEffect(() => {
     const component = document.querySelector(`#node-${itemId}`) as HTMLElement;
@@ -44,7 +44,7 @@ const Node: React.FC<INodeComponentProps> = (props: INodeComponentProps) => {
         height: "auto",
       }}
       onDragStart={(e, data) => {
-        selectNode(selectedNodes, itemId, selected, NodesDispatch);
+        selectNode(selectedTickets, itemId, selected, NodesDispatch);
       }}
       onDrag={(e, data): void => {
         updateNodePosition(data, NodesDispatch, itemId)
