@@ -61,7 +61,7 @@ const Node: React.FC<INodeComponentProps> = (props: INodeComponentProps) => {
               selected={selected}
             />
           )
-          : <Header />
+          : <Header itemId={itemId} />
       }
     </Rnd>
   );

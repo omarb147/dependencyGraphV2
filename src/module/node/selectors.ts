@@ -1,6 +1,6 @@
 import SelectorClass from '@/module/util/rootSelcector';
 import {
-  IFullTicket, INodesState, ITicket, IFullHeader, INodeSize, INodeCoordinates,
+  IFullTicket, INodesState, ITicket, IFullHeader, INodeSize, INodeCoordinates, IHeader,
 } from '@/type/types';
 
 export default class NodeSelector extends SelectorClass {
@@ -10,7 +10,9 @@ export default class NodeSelector extends SelectorClass {
 
   useHeaders = (): IFullHeader => this.useNodeState().headers;
 
-  useTicketById = (id: string): ITicket => this.useTickets()[id]
+  useTicketById = (id: string): ITicket => this.useTickets()[id];
+
+  useHeaderById = (id: string): IHeader => this.useHeaders()[id];
 
   useNodePositionAndSize = (id: string): {position: INodeCoordinates; size: INodeSize} => this.useSelector((state) => {
     const { position, size } = state.node.tickets[id];
