@@ -76,13 +76,13 @@ describe('formatUserStory', () => {
 describe('getHeadersIndex', () => {
   it('should return the index of the header row in the csv', () => {
     const csv = exampleMondayCSV.split('\n');
-    expect(getHeadersIndex(csv)).toEqual(12);
-    expect(csv[12]).toEqual(expect.stringMatching('Name'));
-    expect(csv[12]).toEqual(expect.stringMatching('Status'));
-    expect(csv[12]).toEqual(expect.stringMatching('Label'));
-    expect(csv[12]).toEqual(expect.stringMatching('Points'));
-    expect(csv[12]).toEqual(expect.stringMatching('Item ID'));
-    expect(csv[12]).toEqual(expect.stringMatching('Priority Order'));
+    expect(getHeadersIndex(csv)).toEqual(5);
+    expect(csv[5]).toEqual(expect.stringMatching('Name'));
+    expect(csv[5]).toEqual(expect.stringMatching('Status'));
+    expect(csv[5]).toEqual(expect.stringMatching('Label'));
+    expect(csv[5]).toEqual(expect.stringMatching('Points'));
+    expect(csv[5]).toEqual(expect.stringMatching('Item ID'));
+    expect(csv[5]).toEqual(expect.stringMatching('Priority Order'));
   });
   it('should return undefined if it cannot find the header row in the csv', () => {
     expect(getHeadersIndex([])).toEqual(undefined);

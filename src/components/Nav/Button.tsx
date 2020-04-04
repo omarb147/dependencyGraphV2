@@ -9,29 +9,31 @@ const FileUpload = styled.input`
   display:none;
 `;
 
-export default () => {
+export default (): React.SFC => {
   const NodesDispatch = new NodesDispatchClass();
 
-  const handleOnClick = () => {
+  const handleOnClick = (): void => {
     const uploadButton = document.getElementById('csvUpload');
     if (uploadButton) {
       uploadButton.click();
     }
   };
 
-  const handleUploadOnChange = () => {
+  const handleUploadOnChange = (): void => {
     const uploadInput = document.getElementById('csvUpload') as HTMLInputElement;
     if (uploadInput && uploadInput.files) {
       const { files } = uploadInput;
       if (files && files[0].type === 'text/csv') {
         const reader = new FileReader();
-        reader.onloadend = (event) => {
+        reader.onloadend = (event): void => {
           const content = event?.target?.result;
           if (content && typeof content === 'string') {
             const tickets = mapCSVtoObject(content);
-            Object.values(tickets).forEach((ticket) => {
-              NodesDispatch.addNode(ticket);
-            });
+            if (tickets) {
+              Object.values(tickets).forEach((ticket) => {
+                NodesDispatch.addNode(ticket);
+              });
+            }
           }
         };
         reader.readAsText(files[0]);
