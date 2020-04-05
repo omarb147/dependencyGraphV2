@@ -1,12 +1,17 @@
 export default [
-  '#D461A1', // pink 1
-  '#E88ACF', // pink 2
-  '#E0ABB4', // pink 3
-  '#E8BE64', // yellow
-  '#60D19F', // green
-  '#92E2D7', // teal
-  '#5AC8DF', // aqua
-  '#449BD6', // blue
-  '#A2A5D7', // voilet
-  '#998DCA', // purple
+  '#D8BAD4', // Purple
+  '#E88ACF', // Pink Red
+  '#D4D3EE', // Voilet
+  '#E9D2C0', // Peach
+  '#E9D2C0', // Cherry Blossom Pink
+  '#B9C8E9', // Blue
+  '#B7D4ED', // Sky Blue
+  '#B0DCDB', // Turquiose
+  '#ACE4C9', // Neon Green
+  '#A7D096', // Green
+  '#C2C989', // Earth Green
+  '#CAC297', // Bronze
+  '#EEDA8E', // Yellow
+  '#D9B589', // Orange
+  '#D9B589', // Brown
 ];
