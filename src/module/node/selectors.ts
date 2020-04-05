@@ -1,15 +1,23 @@
-import SelectorClass from '@/module/util/rootSelcector';
-import { IFullNode, INodesState } from '@/type/types';
+import SelectorClass from '@/module/util/rootSelector';
+import {
+  IFullTicket, INodesState, ITicket, IFullHeader, INodeSize, INodeCoordinates, IHeader,
+} from '@/type/types';
 
 export default class NodeSelector extends SelectorClass {
-  getNodeState = (): INodesState => this.useSelector((state) => state.node)
+  useNodeState = (): INodesState => this.useSelector((state) => state.node)
 
-  useNodes = (): IFullNode => this.getNodeState().nodes;
+  useTickets = (): IFullTicket => this.useNodeState().tickets;
 
-  useNodePositionAndSize = (id: string) => this.useSelector((state) => {
-    const { position, size } = state.node.nodes[id];
+  useHeaders = (): IFullHeader => this.useNodeState().headers;
+
+  useTicketById = (id: string): ITicket => this.useTickets()[id];
+
+  useHeaderById = (id: string): IHeader => this.useHeaders()[id];
+
+  useNodePositionAndSize = (id: string): {position: INodeCoordinates; size: INodeSize} => this.useSelector((state) => {
+    const { position, size } = state.node.tickets[id];
     return { position, size };
   });
 
-  useSelectedNodes = () => this.getNodeState().selectedNodes;
+  useSelectedTickets = (): string[] => this.useNodeState().selectedTickets;
 }

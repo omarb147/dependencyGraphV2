@@ -7,7 +7,6 @@ import Button from './Button';
 const NavBar = styled.div`
     width: 100%;
     height: 4rem;
-    position: fixed;
     left: 0;
     bottom:0;
     border-top: 1px black solid;
@@ -23,7 +22,7 @@ export default () => {
     <NavBar>
       <button
         type="button"
-        onClick={() => NodesDispatch.addNode({
+        onClick={() => NodesDispatch.addTicket({
           itemId: uuidV4(),
           name: 'test',
           color: 'green',
@@ -34,7 +33,13 @@ export default () => {
           size: { height: 120, width: 320 },
         })}
       >
-        Test
+        Test Node
+      </button>
+      <button
+        type="button"
+        onClick={() => NodesDispatch.addHeader({ color: 'red', name: 'Header', id: 'header' })}
+      >
+        Test Header
       </button>
       <Button />
     </NavBar>

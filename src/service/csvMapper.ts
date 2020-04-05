@@ -1,4 +1,8 @@
-import { INode, IHeadingMap, Headings } from '@/type/types';
+import {
+  ITicket, IHeadingMap, Headings, IHeader, IHeaderColor, IAllNodes,
+} from '@/type/types';
+import colorList from '@/assets/color';
+import { toCamelCase } from './formatString';
 
 export const getHeadersIndex = (csv: string[]): number | undefined => {
   // Looks specifically for a row with these headers
@@ -40,7 +44,25 @@ export const formatUserStory = (userStory: string): string => {
   return updatedUserStory.slice(updatedUserStory.search(regex), updatedUserStory.length);
 };
 
-export const mapCSVtoObject = (csv: string): INode[] | undefined => {
+const formatEpics = (epics: string[]): {formattedEpics: IHeader[]; colors: IHeaderColor} => {
+  let count = 0;
+  const colors: IHeaderColor = {};
+  const formattedEpics = epics.map((epic) => {
+    if (count >= colorList.length) count = 0;
+    const color = colorList[count];
+    count += 1;
+    colors[epic] = color;
+    return {
+      name: epic,
+      color,
+      id: toCamelCase(epic),
+    };
+  });
+
+  return { formattedEpics, colors };
+};
+
+export const mapCSVtoObject = (csv: string): IAllNodes | undefined => {
   const csvArray = csv.split('\n');
 
   const headerRowIndex = getHeadersIndex(csvArray);
@@ -51,19 +73,29 @@ export const mapCSVtoObject = (csv: string): INode[] | undefined => {
   if (headerRowIndex) {
     const tickets = csvArray.slice(headerRowIndex + 1, csvArray.length - 1);
     const headers = csvArray[headerRowIndex].split(regex).map((header) => header.trim()) as Headings[];
-
-    return tickets.map((ticket) => {
+    const epics: string[] = [];
+    const formattedTickets = tickets.map((ticket) => {
       const ticketInfo = ticket.split(regex);
       return ticketInfo.reduce((acc, val, index) => {
         if (headingMap[headers[index]]) {
+          const trimmedValue = val.trim();
+          if (headers[index] === 'Status' && !epics.includes(trimmedValue)) epics.push(trimmedValue);
           return {
             ...acc,
-            [headingMap[headers[index]]]: headers[index] === 'Name' ? formatUserStory(val.trim()) : val,
+            [headingMap[headers[index]]]: headers[index] === 'Name' ? formatUserStory(val) : trimmedValue,
           };
         }
         return acc;
       }, {});
-    }) as INode[];
+    }) as ITicket[];
+
+    const { formattedEpics, colors } = formatEpics(epics);
+
+    return {
+      tickets: formattedTickets,
+      headers: formattedEpics,
+      colors,
+    };
   }
   return undefined;
 };

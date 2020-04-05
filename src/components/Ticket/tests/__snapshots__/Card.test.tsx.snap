@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Card/> should render a card with color and text 1`] = `
+exports[`<Ticket/> should render a Ticket with color and text 1`] = `
 .c0 {
   background-color: #ffffff;
   border: none;

@@ -22,16 +22,16 @@ const Vector: React.FC<IVector> = (props: IVector) => {
         VectorDispatch.deleteVector(id);
       }}
     >
-    <SteppedLine
+      <SteppedLine
+        borderColor={'#979797'}
         key={id}
         x0={coords.x0}
         y0={coords.y0}
         x1={coords.x1}
         y1={coords.y1}
         orientation={coords.orientation}
-        borderWidth={2.5}
-        zIndex={-1}
-      />  
+        borderWidth={3.5}
+      />
     </div>
   );
 };

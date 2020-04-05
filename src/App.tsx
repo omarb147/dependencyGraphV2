@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import store from '@/module/store';
 import { Graph, Nav } from '@/components';
 
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -17,10 +17,19 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+const Container = styled.div`
+  display:flex;
+  flex-direction: column;
+  height:100vh;
+  width:100vw;
+`;
+
 export default () => (
   <Provider store={store}>
     <GlobalStyle />
-    <Graph />
-    <Nav />
+    <Container>
+      <Graph />
+      <Nav />
+    </Container>
   </Provider>
 );
