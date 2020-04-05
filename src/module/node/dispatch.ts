@@ -1,5 +1,5 @@
 import DispatchClass from '@/module/util/rootDispatch';
-import { ITicket, IHeader, NodeTypes } from '@/type/types';
+import { ITicket, IHeader } from '@/type/types';
 import {
   addTicket, selectNode, deselectNode, deselectAllNodes, updateNodePosition, updateNodeSize, addHeader,
 } from './actions';

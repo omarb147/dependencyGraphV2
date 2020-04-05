@@ -26,12 +26,18 @@ const handleUploadOnChange = (dispatch: NodesDispatchClass) => (): void => {
         reader.onloadend = (event): void => {
           const content = event?.target?.result;
           if (content && typeof content === 'string') {
-            const tickets = mapCSVtoObject(content);
-            if (tickets) {
-              Object.values(tickets).forEach((ticket) => {
-                console.log(ticket)
-                dispatch.addTicket(ticket);
-              });
+            const nodes = mapCSVtoObject(content);
+            if (nodes) {
+              if (nodes.tickets) {
+                Object.values(nodes.tickets).forEach((ticket) => {
+                  dispatch.addTicket(ticket);
+                });
+              }
+              if (nodes.headers) {
+                Object.values(nodes.headers).forEach((header) => {
+                  dispatch.addHeader(header);
+                });
+              }
             } else {
               throw new Error('Unable to find row of headers in CSV.');
             }

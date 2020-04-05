@@ -3,6 +3,7 @@ import {
   mapCSVtoObject,
   formatUserStory,
   getHeadersIndex,
+  toCamelCase,
 } from '../csvMapper';
 
 describe('mapCSVtoObject', () => {
@@ -19,40 +20,59 @@ describe('mapCSVtoObject', () => {
     "[TIMEBOX 1/2day*1dev] AACRC/CKUser on the CDB page, I can see a dropdown for the CC/PC/I and status column for existing surveys and surveys created with existing products (e.g. TRR product)",Go Live Support,SprintReady,,Rob Cronin,507017759,,507017759
     Coaching Elio<>Mike,Coaching,SprintTemplate,,,507679478,,507679478
     `;
-    expect(mapCSVtoObject(simpleCSV)).toMatchObject([
-      {
-        itemId: '504135682',
-        name: 'SPRINT GOAL: AACKU, on the home page, when I click on my contact database button, I am taken to the contact database of the latest survey',
-        labels: 'SprintGoal',
-        person: '',
-        points: '',
-        status: 'Access Latest Survey',
-      },
-      {
-        itemId: '505730979',
-        name: 'AACKUser on the home page, when there are no surveys in an organisation, the button "My Contact Database" is disabled',
-        labels: 'SprintGoal',
-        person: '',
-        points: '2',
-        status: 'Access Latest Survey',
-      },
-      {
-        itemId: '507017759',
-        labels: 'SprintReady',
-        person: 'Rob Cronin',
-        name: '[TIMEBOX 1/2day*1dev] AACRC/CKUser on the CDB page, I can see a dropdown for the CC/PC/I and status column for existing surveys and surveys created with existing products (e.g. TRR product)',
-        points: '',
-        status: 'Go Live Support',
-      },
-      {
-        itemId: '507679478',
-        labels: 'SprintTemplate',
-        person: '',
-        points: '',
-        name: 'Coaching Elio<>Mike',
-        status: 'Coaching',
-      },
-    ]);
+    expect(mapCSVtoObject(simpleCSV)).toMatchObject({
+      tickets: [
+        {
+          itemId: '504135682',
+          name: 'SPRINT GOAL: AACKU, on the home page, when I click on my contact database button, I am taken to the contact database of the latest survey',
+          labels: 'SprintGoal',
+          person: '',
+          points: '',
+          status: 'Access Latest Survey',
+        },
+        {
+          itemId: '505730979',
+          name: 'AACKUser on the home page, when there are no surveys in an organisation, the button "My Contact Database" is disabled',
+          labels: 'SprintGoal',
+          person: '',
+          points: '2',
+          status: 'Access Latest Survey',
+        },
+        {
+          itemId: '507017759',
+          labels: 'SprintReady',
+          person: 'Rob Cronin',
+          name: '[TIMEBOX 1/2day*1dev] AACRC/CKUser on the CDB page, I can see a dropdown for the CC/PC/I and status column for existing surveys and surveys created with existing products (e.g. TRR product)',
+          points: '',
+          status: 'Go Live Support',
+        },
+        {
+          itemId: '507679478',
+          labels: 'SprintTemplate',
+          person: '',
+          points: '',
+          name: 'Coaching Elio<>Mike',
+          status: 'Coaching',
+        },
+      ],
+      headers: [
+        {
+          color: 'green',
+          id: 'accessLatestSurvey',
+          name: 'Access Latest Survey',
+        },
+        {
+          color: 'green',
+          id: 'goLiveSupport',
+          name: 'Go Live Support',
+        },
+        {
+          color: 'green',
+          id: 'coaching',
+          name: 'Coaching',
+        },
+      ],
+    });
   });
 });
 
@@ -86,5 +106,14 @@ describe('getHeadersIndex', () => {
   });
   it('should return undefined if it cannot find the header row in the csv', () => {
     expect(getHeadersIndex([])).toEqual(undefined);
+  });
+});
+
+describe('toCamelCase', () => {
+  it('should convert string to camel case', () => {
+    expect(toCamelCase('  Came/?l  case  ')).toEqual('cameLCase');
+    expect(toCamelCase('camel case')).toEqual('camelCase');
+    expect(toCamelCase('Camel case')).toEqual('camelCase');
+    expect(toCamelCase('  Camel  case  ')).toEqual('camelCase');
   });
 });

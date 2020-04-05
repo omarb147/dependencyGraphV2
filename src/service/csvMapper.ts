@@ -1,4 +1,6 @@
-import { ITicket, IHeadingMap, Headings } from '@/type/types';
+import {
+  ITicket, IHeadingMap, Headings, IHeader,
+} from '@/type/types';
 
 export const getHeadersIndex = (csv: string[]): number | undefined => {
   // Looks specifically for a row with these headers
@@ -40,7 +42,20 @@ export const formatUserStory = (userStory: string): string => {
   return updatedUserStory.slice(updatedUserStory.search(regex), updatedUserStory.length);
 };
 
-export const mapCSVtoObject = (csv: string): ITicket[] | undefined => {
+// Works for most strings
+export const toCamelCase = (text: string): string => text.trim()
+  .replace(/(\W+)|(\s)/g, ' ')
+  .toLowerCase()
+  .replace(/\b[a-zA-Z]/g, (letter, index) => (index > 0 ? letter.toUpperCase() : letter))
+  .replace(/\s+/g, '');
+
+
+interface IAllNodes {
+  tickets: ITicket[];
+  headers: IHeader[];
+}
+
+export const mapCSVtoObject = (csv: string): IAllNodes | undefined => {
   const csvArray = csv.split('\n');
 
   const headerRowIndex = getHeadersIndex(csvArray);
@@ -51,11 +66,13 @@ export const mapCSVtoObject = (csv: string): ITicket[] | undefined => {
   if (headerRowIndex) {
     const tickets = csvArray.slice(headerRowIndex + 1, csvArray.length - 1);
     const headers = csvArray[headerRowIndex].split(regex).map((header) => header.trim()) as Headings[];
+    const epics: string[] = [];
 
-    return tickets.map((ticket) => {
+    const formattedTickets = tickets.map((ticket) => {
       const ticketInfo = ticket.split(regex);
       return ticketInfo.reduce((acc, val, index) => {
         if (headingMap[headers[index]]) {
+          if (headers[index] === 'Status' && !epics.includes(val)) epics.push(val);
           return {
             ...acc,
             [headingMap[headers[index]]]: headers[index] === 'Name' ? formatUserStory(val.trim()) : val,
@@ -64,6 +81,17 @@ export const mapCSVtoObject = (csv: string): ITicket[] | undefined => {
         return acc;
       }, {});
     }) as ITicket[];
+
+    const formattedEpics: IHeader[] = epics.map((epic) => ({
+      name: epic,
+      color: 'green',
+      id: toCamelCase(epic),
+    }));
+
+    return {
+      tickets: formattedTickets,
+      headers: formattedEpics,
+    };
   }
   return undefined;
 };

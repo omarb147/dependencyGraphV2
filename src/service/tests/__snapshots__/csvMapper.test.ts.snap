@@ -1,38 +1,52 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`mapCSVtoObject should return an array of row objects - Full version 1`] = `
-Array [
-  Object {
-    "itemId": "504135682",
-    "labels": "SprintGoal",
-    "name": "SPRINT GOAL: User story",
-    "person": "",
-    "points": "",
-    "status": "Access Latest Survey",
-  },
-  Object {
-    "itemId": "504135686",
-    "labels": "SprintGoal",
-    "name": "User story 1",
-    "person": "AW",
-    "points": "2",
-    "status": "Access Latest Survey",
-  },
-  Object {
-    "itemId": "504135687",
-    "labels": "",
-    "name": "User story 2",
-    "person": "OB",
-    "points": "3",
-    "status": "Create Repeat Survey",
-  },
-  Object {
-    "itemId": "504779210",
-    "labels": "",
-    "name": "User story 3",
-    "person": "",
-    "points": "4",
-    "status": "Create Repeat Survey",
-  },
-]
+Object {
+  "headers": Array [
+    Object {
+      "color": "green",
+      "id": "accessLatestSurvey",
+      "name": "Access Latest Survey",
+    },
+    Object {
+      "color": "green",
+      "id": "createRepeatSurvey",
+      "name": "Create Repeat Survey",
+    },
+  ],
+  "tickets": Array [
+    Object {
+      "itemId": "504135682",
+      "labels": "SprintGoal",
+      "name": "SPRINT GOAL: User story",
+      "person": "",
+      "points": "",
+      "status": "Access Latest Survey",
+    },
+    Object {
+      "itemId": "504135686",
+      "labels": "SprintGoal",
+      "name": "User story 1",
+      "person": "AW",
+      "points": "2",
+      "status": "Access Latest Survey",
+    },
+    Object {
+      "itemId": "504135687",
+      "labels": "",
+      "name": "User story 2",
+      "person": "OB",
+      "points": "3",
+      "status": "Create Repeat Survey",
+    },
+    Object {
+      "itemId": "504779210",
+      "labels": "",
+      "name": "User story 3",
+      "person": "",
+      "points": "4",
+      "status": "Create Repeat Survey",
+    },
+  ],
+}
 `;
