@@ -18,10 +18,11 @@ const Node: React.FC<INodeComponentProps> = (props: INodeComponentProps) => {
   const { NodesDispatch, selectedTickets } = useNodeWrap();
 
   useEffect(() => {
-    const component = document.querySelector(`#node-${itemId}`) as HTMLElement;
-    const { offsetHeight, offsetWidth } = component;
-
-    updateNodeSize(itemId, offsetHeight, offsetWidth, NodesDispatch, type);
+    const component = document.querySelector(`#node-${itemId}`) as HTMLElement | undefined;
+    if (component) {
+      const { offsetHeight, offsetWidth } = component;
+      updateNodeSize(itemId, offsetHeight, offsetWidth, NodesDispatch, type);
+    }
   }, []);
 
 
