@@ -1,6 +1,8 @@
 import {
   ITicket, IHeadingMap, Headings, IHeader,
 } from '@/type/types';
+import colorList from '@/assets/color';
+import { toCamelCase } from './formatString';
 
 export const getHeadersIndex = (csv: string[]): number | undefined => {
   // Looks specifically for a row with these headers
@@ -42,18 +44,24 @@ export const formatUserStory = (userStory: string): string => {
   return updatedUserStory.slice(updatedUserStory.search(regex), updatedUserStory.length);
 };
 
-// Works for most strings
-export const toCamelCase = (text: string): string => text.trim()
-  .replace(/(\W+)|(\s)/g, ' ')
-  .toLowerCase()
-  .replace(/\b[a-zA-Z]/g, (letter, index) => (index > 0 ? letter.toUpperCase() : letter))
-  .replace(/\s+/g, '');
-
-
 interface IAllNodes {
   tickets: ITicket[];
   headers: IHeader[];
 }
+
+const formatEpics = (epics: string[]): IHeader[] => {
+  let count = 0;
+  return epics.map((epic) => {
+    if (count >= colorList.length) count = 0;
+    const color = colorList[count];
+    count += 1;
+    return {
+      name: epic,
+      color,
+      id: toCamelCase(epic),
+    };
+  });
+};
 
 export const mapCSVtoObject = (csv: string): IAllNodes | undefined => {
   const csvArray = csv.split('\n');
@@ -82,11 +90,7 @@ export const mapCSVtoObject = (csv: string): IAllNodes | undefined => {
       }, {});
     }) as ITicket[];
 
-    const formattedEpics: IHeader[] = epics.map((epic) => ({
-      name: epic,
-      color: 'green',
-      id: toCamelCase(epic),
-    }));
+    const formattedEpics: IHeader[] = formatEpics(epics);
 
     return {
       tickets: formattedTickets,

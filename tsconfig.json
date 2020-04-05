@@ -22,6 +22,7 @@
       "@/components/*": ["src/components/*"],
       "@/module/*": ["src/module/*"],
       "@/service/*": ["src/service/*"],
+      "@/assets/*": ["src/assets/*"],
       "@/data/*": ["data/*"]
     },
     "moduleResolution": "node"

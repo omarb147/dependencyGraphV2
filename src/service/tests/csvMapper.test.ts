@@ -3,7 +3,6 @@ import {
   mapCSVtoObject,
   formatUserStory,
   getHeadersIndex,
-  toCamelCase,
 } from '../csvMapper';
 
 describe('mapCSVtoObject', () => {
@@ -106,14 +105,5 @@ describe('getHeadersIndex', () => {
   });
   it('should return undefined if it cannot find the header row in the csv', () => {
     expect(getHeadersIndex([])).toEqual(undefined);
-  });
-});
-
-describe('toCamelCase', () => {
-  it('should convert string to camel case', () => {
-    expect(toCamelCase('  Came/?l  case  ')).toEqual('cameLCase');
-    expect(toCamelCase('camel case')).toEqual('camelCase');
-    expect(toCamelCase('Camel case')).toEqual('camelCase');
-    expect(toCamelCase('  Camel  case  ')).toEqual('camelCase');
   });
 });

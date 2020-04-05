@@ -15,6 +15,7 @@
           ["@/module", "./src/module"],
           ["@/data", "./data"],
           ["@/service", "./src/service"],
+          ["@/assets", "./src/assets"],
           ["@/src", "./src"]
         ],
         "extensions": [".ts", ".tsx"]
