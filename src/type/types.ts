@@ -37,6 +37,11 @@ export interface INodesState {
   selectedTickets: string[];
   tickets: IFullTicket;
   headers: IFullHeader;
+  colors: IHeaderColor;
+}
+
+export interface IHeaderColor {
+  [index: string]: string;
 }
 
 export interface ILink {

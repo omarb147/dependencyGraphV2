@@ -1,5 +1,5 @@
 import {
-  ITicket, IHeadingMap, Headings, IHeader,
+  ITicket, IHeadingMap, Headings, IHeader, IHeaderColor,
 } from '@/type/types';
 import colorList from '@/assets/color';
 import { toCamelCase } from './formatString';
@@ -47,20 +47,25 @@ export const formatUserStory = (userStory: string): string => {
 interface IAllNodes {
   tickets: ITicket[];
   headers: IHeader[];
+  colors: IHeaderColor;
 }
 
-const formatEpics = (epics: string[]): IHeader[] => {
+const formatEpics = (epics: string[]): {formattedEpics: IHeader[]; colors: IHeaderColor} => {
   let count = 0;
-  return epics.map((epic) => {
+  const colors: IHeaderColor = {};
+  const formattedEpics = epics.map((epic) => {
     if (count >= colorList.length) count = 0;
     const color = colorList[count];
     count += 1;
+    colors[epic] = color;
     return {
       name: epic,
       color,
       id: toCamelCase(epic),
     };
   });
+
+  return { formattedEpics, colors };
 };
 
 export const mapCSVtoObject = (csv: string): IAllNodes | undefined => {
@@ -75,26 +80,41 @@ export const mapCSVtoObject = (csv: string): IAllNodes | undefined => {
     const tickets = csvArray.slice(headerRowIndex + 1, csvArray.length - 1);
     const headers = csvArray[headerRowIndex].split(regex).map((header) => header.trim()) as Headings[];
     const epics: string[] = [];
-
     const formattedTickets = tickets.map((ticket) => {
       const ticketInfo = ticket.split(regex);
       return ticketInfo.reduce((acc, val, index) => {
         if (headingMap[headers[index]]) {
-          if (headers[index] === 'Status' && !epics.includes(val)) epics.push(val);
+          const newVal = val.trim();
+          const key = headingMap[headers[index]];
+          let value;
+          switch (headers[index]) {
+            case 'Name': // Format the user story
+              value = { [key]: formatUserStory(newVal) };
+              break;
+            case 'Status': // Link Status (epic) with a color
+              if (!epics.includes(newVal)) epics.push(newVal);
+              value = {
+                [key]: newVal,
+              };
+              break;
+            default: // Otherwise just return value
+              value = { [key]: newVal };
+          }
           return {
             ...acc,
-            [headingMap[headers[index]]]: headers[index] === 'Name' ? formatUserStory(val.trim()) : val,
+            ...value,
           };
         }
         return acc;
       }, {});
     }) as ITicket[];
 
-    const formattedEpics: IHeader[] = formatEpics(epics);
+    const { formattedEpics, colors } = formatEpics(epics);
 
     return {
       tickets: formattedTickets,
       headers: formattedEpics,
+      colors,
     };
   }
   return undefined;

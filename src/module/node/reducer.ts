@@ -10,6 +10,7 @@ import {
   updateNodePosition,
   updateNodeSize,
   addHeader,
+  addColor,
 } from './actions';
 
 const initialState: INodesState = {
@@ -27,6 +28,7 @@ const initialState: INodesState = {
   },
   selectedTickets: [],
   headers: {},
+  colors: {},
 };
 
 export default (state: INodesState = initialState, action: nodeActionTypes): INodesState => {
@@ -119,6 +121,14 @@ export default (state: INodesState = initialState, action: nodeActionTypes): INo
     }
     case getType(deselectAllNodes):
       return { ...state, selectedTickets: [] };
+    case getType(addColor):
+      return {
+        ...state,
+        colors: {
+          ...state.colors,
+          ...action.payload.color,
+        },
+      };
     default: {
       return state;
     }

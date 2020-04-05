@@ -1,4 +1,4 @@
-import SelectorClass from '@/module/util/rootSelcector';
+import SelectorClass from '@/module/util/rootSelector';
 import {
   IFullTicket, INodesState, ITicket, IFullHeader, INodeSize, INodeCoordinates, IHeader,
 } from '@/type/types';
