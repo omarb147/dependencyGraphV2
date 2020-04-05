@@ -1,5 +1,5 @@
 import {
-  ITicket, IHeadingMap, Headings, IHeader, IHeaderColor,
+  ITicket, IHeadingMap, Headings, IHeader, IHeaderColor, IAllNodes,
 } from '@/type/types';
 import colorList from '@/assets/color';
 import { toCamelCase } from './formatString';
@@ -43,12 +43,6 @@ export const formatUserStory = (userStory: string): string => {
 
   return updatedUserStory.slice(updatedUserStory.search(regex), updatedUserStory.length);
 };
-
-interface IAllNodes {
-  tickets: ITicket[];
-  headers: IHeader[];
-  colors: IHeaderColor;
-}
 
 const formatEpics = (epics: string[]): {formattedEpics: IHeader[]; colors: IHeaderColor} => {
   let count = 0;

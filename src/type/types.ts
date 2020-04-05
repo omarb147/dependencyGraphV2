@@ -80,6 +80,13 @@ export interface IHeadingMap {
   'Priotiry Order': 'priorityOrder';
 }
 
+export interface IAllNodes {
+  tickets: ITicket[];
+  headers: IHeader[];
+  colors: IHeaderColor;
+}
+
+
 export type Headings = keyof IHeadingMap;
 
 export type NodeTypes = 'ticket' | 'header';
