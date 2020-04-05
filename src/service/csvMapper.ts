@@ -84,25 +84,11 @@ export const mapCSVtoObject = (csv: string): IAllNodes | undefined => {
       const ticketInfo = ticket.split(regex);
       return ticketInfo.reduce((acc, val, index) => {
         if (headingMap[headers[index]]) {
-          const newVal = val.trim();
-          const key = headingMap[headers[index]];
-          let value;
-          switch (headers[index]) {
-            case 'Name': // Format the user story
-              value = { [key]: formatUserStory(newVal) };
-              break;
-            case 'Status': // Link Status (epic) with a color
-              if (!epics.includes(newVal)) epics.push(newVal);
-              value = {
-                [key]: newVal,
-              };
-              break;
-            default: // Otherwise just return value
-              value = { [key]: newVal };
-          }
+          const trimmedValue = val.trim();
+          if (headers[index] === 'Status' && !epics.includes(trimmedValue)) epics.push(trimmedValue);
           return {
             ...acc,
-            ...value,
+            [headingMap[headers[index]]]: headers[index] === 'Name' ? formatUserStory(val) : trimmedValue,
           };
         }
         return acc;
