@@ -20,9 +20,10 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - run: ls
-      - checkout
-      - run: ls
+      - aws-s3/sync:
+          arguments: --delete
+          from: dist
+          to: "s3://scrumways.com"
 
 workflows:
   deploying-app:

@@ -1,9 +1,9 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import store from '@/module/store';
-import { Graph, Nav } from '@/components';
+import React from "react";
+import { Provider } from "react-redux";
+import store from "@/module/store";
+import { Graph, Nav } from "@/components";
 
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -18,16 +18,17 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Container = styled.div`
-  display:flex;
+  display: flex;
   flex-direction: column;
-  height:100vh;
-  width:100vw;
+  height: 100vh;
+  width: 100vw;
 `;
 
 export default () => (
   <Provider store={store}>
     <GlobalStyle />
     <Container>
+      {console.log("circle-ci in action!")}
       <Graph />
       <Nav />
     </Container>
