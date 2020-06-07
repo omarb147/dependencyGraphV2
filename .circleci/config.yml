@@ -1,6 +1,8 @@
 version: 2.1
 orbs:
   node: circleci/node@3.0.0
+  python: circleci/python@0.3.0
+  aws-s3: circleci/aws-s3@1.0.15
 jobs:
   build:
     executor:
@@ -10,9 +12,22 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn
       - run: yarn build
+      - persist_to_workspace:
+          root: .
+          paths: dist/
+  deploy:
+    executor: python/default
+    steps:
+      - attach_workspace:
+          at: .
+      - run: ls
+      - checkout
       - run: ls
 
 workflows:
   deploying-app:
     jobs:
       - build
+      - deploy:
+          requires:
+            - build
