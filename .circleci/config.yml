@@ -28,7 +28,13 @@ jobs:
 workflows:
   deploying-app:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              only: master
       - deploy:
           requires:
             - build
+          filters:
+            branches:
+              only: master
